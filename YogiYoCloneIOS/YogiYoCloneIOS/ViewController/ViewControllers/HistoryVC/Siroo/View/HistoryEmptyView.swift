@@ -56,7 +56,7 @@ class HistoryEmptyView: UIView, UIScrollViewDelegate {
     }
     
 //    MARK: Func
-    func configSetUI(index: Int) {
+    func configSetUI() {
         
         addSubview(emptyView)
         emptyView.snp.makeConstraints { (make) in
@@ -82,7 +82,7 @@ class HistoryEmptyView: UIView, UIScrollViewDelegate {
         emptyView.addSubview(kakaotalkButton)
         kakaotalkButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(60)
-            make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(1.35)
+            make.centerY.equalTo(emptyView.snp.centerY).multipliedBy(1.25)
             make.centerX.equalTo(emptyView.snp.centerX).multipliedBy(1.75)
         }
     }
