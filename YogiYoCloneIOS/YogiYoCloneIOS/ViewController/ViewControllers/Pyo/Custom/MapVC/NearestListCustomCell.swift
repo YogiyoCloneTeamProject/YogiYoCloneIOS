@@ -21,14 +21,14 @@ class NearestListCustomCell: UITableViewCell {
     
     private let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "경기도 용인시 기흥구 마북동 625 교동마을 현대필그린아파트 103동102호"
+        label.text = "요기요시 요기요구 요기요동 어디요리 1-2 오영빌딩"
         label.font = UIFont(name: FontModel.customLight, size: 16)
         label.numberOfLines = 2
         return label
     }()
     private let addressRoadLabel: UILabel = {
         let label = UILabel()
-        label.text = "[도로명] 마북로 139 교동마을 현대필그린아파트 103동102호"
+        label.text = "[도로명] QA로 00 오영빌딩"
         label.font = UIFont(name: FontModel.customLight, size: 12.5)
         label.textColor = .gray
         label.numberOfLines = 2
