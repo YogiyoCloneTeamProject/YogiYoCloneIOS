@@ -66,7 +66,7 @@ class SignCell: UITableViewCell {
         backgroundColor = .white
         
         [signText, singInButton, singUpButton].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
         }
         
         signText.snp.makeConstraints { [weak self] (make) in

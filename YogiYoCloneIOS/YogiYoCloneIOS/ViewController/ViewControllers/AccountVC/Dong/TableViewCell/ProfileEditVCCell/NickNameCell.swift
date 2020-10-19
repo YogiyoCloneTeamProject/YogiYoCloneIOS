@@ -69,7 +69,7 @@ class NickNameCell: UITableViewCell {
         backgroundColor = .white
         
         [nickNameTitle, nickName, changeButton, topDeviderView].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
         }
         
         nickNameTitle.snp.makeConstraints { (make) in

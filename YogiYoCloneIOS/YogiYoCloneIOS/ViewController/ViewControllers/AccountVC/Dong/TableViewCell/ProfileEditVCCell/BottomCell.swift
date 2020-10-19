@@ -63,7 +63,7 @@ class BottomCell: UITableViewCell {
         backgroundColor = .white
         
         [logoutButton, leaveButton, deviderView, topDeviderView].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
         }
         
         leaveButton.snp.makeConstraints { (make) in

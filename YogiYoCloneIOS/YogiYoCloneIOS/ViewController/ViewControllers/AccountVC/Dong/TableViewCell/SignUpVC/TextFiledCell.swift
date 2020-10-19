@@ -272,7 +272,7 @@ class TextFiledCell: UITableViewCell {
     // MARK: ConfigureViews
     private func configureViews() {
         [titleLabel, stackView].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -295,7 +295,7 @@ class TextFiledCell: UITableViewCell {
         }
         
         [titleCheckBoxButton, acceptStackView, nextButton].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
         }
         
         titleCheckBoxButton.snp.makeConstraints { [weak self] (make) in
