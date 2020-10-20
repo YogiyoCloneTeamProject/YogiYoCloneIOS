@@ -66,7 +66,7 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "슈퍼레드위크 추천"
+        return "요기요 등록 음식점"
     }
     
     //헤더뷰
@@ -85,7 +85,7 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
         
         headerLabel.textColor = .black
-        headerLabel.font = UIFont(name: FontModel.customSemibold, size: 18)
+        headerLabel.font = UIFont(name: FontModel.customSemibold, size: 15)
         headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
