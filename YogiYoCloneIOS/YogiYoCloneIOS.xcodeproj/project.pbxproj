@@ -90,6 +90,7 @@
 		73A7C559253D6C0600744979 /* UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7C558253D6C0600744979 /* UITableViewDelegate.swift */; };
 		73A7C55C253D6C3200744979 /* UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7C55B253D6C3200744979 /* UITableViewDataSource.swift */; };
 		73A7C55F253D6D4200744979 /* ListMenuDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7C55E253D6D4200744979 /* ListMenuDelagate.swift */; };
+		73A7C5A6253F03A700744979 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A7C5A5253F03A700744979 /* SearchManager.swift */; };
 		7F024F53CFF53EFD6A26C0EF /* Pods_YogiYoCloneIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98FB96A4EAEB5D87559B8B0 /* Pods_YogiYoCloneIOS.framework */; };
 		D303B41924F17C04001701F0 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D303B41824F17C04001701F0 /* FooterView.swift */; };
 		D307AAE124F268E400225E6A /* SignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D307AAE024F268E400225E6A /* SignCell.swift */; };
@@ -259,6 +260,7 @@
 		73A7C558253D6C0600744979 /* UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewDelegate.swift; sourceTree = "<group>"; };
 		73A7C55B253D6C3200744979 /* UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewDataSource.swift; sourceTree = "<group>"; };
 		73A7C55E253D6D4200744979 /* ListMenuDelagate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMenuDelagate.swift; sourceTree = "<group>"; };
+		73A7C5A5253F03A700744979 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		74F0E0FAD40A790ACA2E0A3A /* Pods-YogiYoCloneIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.debug.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8DC8C245D39A5D413C3649C1 /* Pods-YogiYoCloneIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YogiYoCloneIOS.release.xcconfig"; path = "Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D303B41824F17C04001701F0 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
@@ -736,6 +738,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		73A7C5A4253F037300744979 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73A2501F252BFB3D009D42EF /* TopView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8E9DD74491D6B090A37CFBB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,7 +817,8 @@
 			children = (
 				D33768C224ECC78300E0C27A /* SearchVC.swift */,
 				73A2501C252BF382009D42EF /* DidSearchVC.swift */,
-				73A2501F252BFB3D009D42EF /* TopView.swift */,
+				73A7C5A4253F037300744979 /* View */,
+				73A7C5A5253F03A700744979 /* SearchManager.swift */,
 			);
 			path = SearchVC;
 			sourceTree = "<group>";
@@ -1376,6 +1387,7 @@
 				6E91215924FA50E7003D86F0 /* RestaurantPlusCustomCell.swift in Sources */,
 				DE1EF5F0252860C700D0667A /* HistoryCell.swift in Sources */,
 				DE21FA6F24F4AC5B004D8A56 /* CustomTopCategoryView.swift in Sources */,
+				73A7C5A6253F03A700744979 /* SearchManager.swift in Sources */,
 				731B05972510E8A3005BC1DC /* MembershipCell.swift in Sources */,
 				034399D62529EDB600ABBDC9 /* SectionView.swift in Sources */,
 				D392C64B24F273D400210829 /* WalletCell.swift in Sources */,

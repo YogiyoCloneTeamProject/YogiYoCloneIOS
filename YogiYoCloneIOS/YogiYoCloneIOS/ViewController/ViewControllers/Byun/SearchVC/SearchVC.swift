@@ -76,6 +76,7 @@ class SearchVC: UIViewController {
       self.data = comeData
       DispatchQueue.main.async {
         self.tableview.reloadData()
+        
       }
     }
   }
@@ -92,12 +93,7 @@ class SearchVC: UIViewController {
       
       tableview.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
-    
   
- // let datai = ["롯데리아","버거킹","치요남치킨","요거프레소","호식이두마리치킨","홍콩반점0410","홈플러스익스프레스","호치킨", "피자헛","맥도날드"]
- // let datai : [String] = []
-//  let dataa : [String] = []
-//  var filterData : [String]!
   
   //MARK: -fechData
   
@@ -115,7 +111,7 @@ class SearchVC: UIViewController {
       do {
         let searchData = try JSONDecoder().decode(DidSearchData.self, from: data)
         completion(searchData)
-
+        
         DispatchQueue.main.async{
           print("ddddd")
         }
@@ -149,14 +145,27 @@ class SearchVC: UIViewController {
 extension SearchVC : UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = DidSearchVC()
-    navigationController?.pushViewController(vc, animated: true)
-  
-    //  filterData.removeAll()
     
-   // let searchData = SearchData(id: , name: <#T##String?#>)
+    let index = data!.results?[indexPath.row]
+    print(index)
+    
+  //  let searchData = DidSearchData(next: data!.next, previous: data!.previous, results: [DidSearchData.Results(id: index!.id, name: index?.name, star: index?.star, image: index?.image, deliveryDiscount: index?.deliveryDiscount, deliveryCharge: index?.deliveryCharge, deliveryTime: index?.deliveryTime, reviewCount: index?.reviewCount, representativeMenus: index?.representativeMenus, ownerCommentCount: index?.ownerCommentCount)])
     
     var ii = data?.results
-    print("ii",ii)
+  
+    //OrderData(menu: data!.id, name: data!.name, count: 1, price: data!.price)
+    
+    vc.searchValue(didSearchData: [DidSearchData]())
+    
+    navigationController?.pushViewController(vc, animated: true)
+  
+//보내는 곳
+   // var ii = data?.results
+   // vc.searchValue()
+
+  //  print("ii",ii)
+    
+    
     
 //    var item = data?.results![indexPath.row]
 //    var searchData = DidSearchData.Results(id: item?.id, name: item?.name, star: item?.star, image: item?.image, deliveryDiscount: item?.deliveryCharge, deliveryCharge: item?.deliveryCharge, deliveryTime: item?.deliveryTime, reviewCount: item?.reviewCount, representativeMenus: item?.representativeMenus, ownerCommentCount: item?.ownerCommentCount)

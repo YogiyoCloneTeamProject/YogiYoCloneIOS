@@ -10,10 +10,11 @@ import UIKit
 
 class DidSearchVC : UIViewController {
   
-  var ii = [SearchData]()
+ // var searchList = [DidSearchData]()
   //public var restaurants: [AllListData.Results] = []
   var data : DidSearchData?
-  var word : String = ""
+  var searchList: [DidSearchData] = []
+
     
   let searchfield = UITextField()
   let topView = TopView()
@@ -29,15 +30,20 @@ class DidSearchVC : UIViewController {
     setTableView()
     topViewFrame()
     constrain()
-    
 //    loadData { (DidSearchData) in
 //        self.didSearchdata = DidSearchData
-//        DispatchQueue.main.async {
-//            self.setUI()
-//            self.setLayout()
-//        }
  //   }
   }
+ 
+  //받기
+  func searchValue(didSearchData: [DidSearchData]) -> [DidSearchData]{
+    print("DidVC DidSearchData = \(didSearchData)")
+    return searchList
+print(searchList)
+    
+  }
+
+   
   
   
   func fechData(){
@@ -154,17 +160,20 @@ extension DidSearchVC : UITextFieldDelegate{
 
 extension DidSearchVC : UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
- 10
+   10
+    // ii.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "StoreListCell", for: indexPath) as! StoreListCell
-//    let vc =
+
 //      vc.searchValue
     
     let row = indexPath.row
-    cell.cescoMark
-    cell.restaurant?.averageRating
+    
+    
+//    cell.cescoMark
+//    cell.restaurant?.averageRating
     //    cell.searchValue(image: DidSearchData?.results[row].image,
 //                  title: DidSearchData?.results[row].name,
 //                  starPoint: DidSearchData?.results[row].star,
