@@ -13,16 +13,23 @@ protocol HistoryVCDelegate : class {
     func historyVCScrollIndex(to index : Int)
 }
 
-class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollViewDelegate, HistoryEmptyViewdelegate {
+class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollViewDelegate, HistoryEmptyViewdelegate, HistoryFetchProtocol {
+    
     
     let orderTypes = ["터치주문", "전화주문"]
-    let orderCounts = [2, 0]
+    var touchHistories: [OrderListData.Results] = []
+    var contactHistories: [OrderListData.Results] = []
+    let orderCounts = [10, 0]
     private let topBannerImages = [UIImage(named: "MyListbanner1"),UIImage(named: "MyListbanner2")]
 
     private var categoryIndex : Int = 0
     
     private var codeSegmented: CustomTopCategoryView?
     private let storeListVC = StoreListVC()
+    private let historyFetch = HistoryInfoFetch()
+    private let tableView: [UITableView] = [UITableView(), UITableView()]
+    private let pageViews: [UIView] = [UIView(), UIView()]
+    private let imageViews: [UIImageView] = [UIImageView(), UIImageView()]
     
     private lazy var wrapperScrollView: UIScrollView = {
        return getWrapperScrollView()
@@ -35,12 +42,16 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPiker.customSystem
+        historyFetch.historyFetchDelegate = self
         configurecodeSegmented()
         
         // 컨텐츠 view 만들기
         configureContentView()
-        
+        historyFetch.historyFetch()
+
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,6 +61,9 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        title = "주문내역"
     }
 
     
@@ -86,12 +100,24 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         for index in 0 ..< orderTypes.count {
             let pageView = configurePageContentView(page: index)
             let bannerView = congifureBannerView(parentView: pageView, index: index)
-//            configureEmptyView(parentView: pageView, index : index, bannerView: bannerView)
             
-            configureTableView(parentView: pageView, index: index, bannerView: bannerView)
-            
+            if  index == 1 {
+                configureEmptyView(parentView: pageView, bannerView: bannerView)
+            } else {
+                configureTableView(parentView: pageView, bannerView: bannerView, tableView: tableView[index])
+            }
         }
     }
+    
+    func historyRetrived(histories: [OrderListData.Results]) {
+        if histories.count > 0 {
+            touchHistories = histories
+            tableView[0].reloadData()
+        } else {
+            configureEmptyView(parentView: pageViews[0], bannerView: imageViews[0])
+        }
+    }
+    
     
     /**
         스크롤뷰 기본셋팅하여 반환
@@ -123,9 +149,8 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         페이지마다 전체를 감싸줄 contentView 설정
      */
     func configurePageContentView(page: Int) -> UIView {
-        
+        let pageView = pageViews[page]
         let xPosition = page * Int(view.frame.width)
-        let pageView = UIView()
         
         if page == 0 {
             pageView.backgroundColor = .systemBlue
@@ -144,7 +169,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         bannerView 설정
      */
     func congifureBannerView(parentView: UIView, index: Int) -> UIImageView {
-        let imageView = UIImageView()
+        let imageView = imageViews[index]
         imageView.image = topBannerImages[index]
         parentView.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
@@ -157,10 +182,10 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     
     }
     
-    func configureEmptyView(parentView: UIView, index : Int, bannerView: UIImageView) {
+    func configureEmptyView(parentView: UIView, bannerView: UIImageView) {
         let emptyView = HistoryEmptyView()
         emptyView.historyEmptyViewdelegate = self
-        emptyView.configSetUI(index: index)
+        emptyView.configSetUI()
         parentView.addSubview(emptyView)
         emptyView.snp.makeConstraints { (make) in
             make.bottom.leading.trailing.equalTo(parentView)
@@ -202,8 +227,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         print("TableviewDelegate")
     }
     
-    func configureTableView(parentView : UIView, index : Int, bannerView: UIImageView) {
-        let tableView = UITableView()
+    func configureTableView(parentView : UIView, bannerView: UIImageView, tableView: UITableView) {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 160
@@ -225,12 +249,15 @@ extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return touchHistories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HistoryCell
+        cell.history = self.touchHistories[indexPath.row]
         cell.selectionStyle = .none
+        cell.layer.borderWidth = 4
+        cell.layer.borderColor = ColorPiker.customSystem.cgColor
         return cell
     }
     

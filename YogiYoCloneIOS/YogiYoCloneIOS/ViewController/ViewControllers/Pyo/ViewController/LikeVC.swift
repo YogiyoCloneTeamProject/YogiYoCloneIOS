@@ -67,6 +67,7 @@ class LikeVC: UIViewController {
         listVC.categoryIndex = sender.tag
         navigationController?.pushViewController(listVC, animated: true)
     }
+    
     @objc func removeLike(_ sender: UIButton) {
         if sender.isSelected {
             sender.setImage(UIImage(systemName: "suit.heart"), for: .normal)

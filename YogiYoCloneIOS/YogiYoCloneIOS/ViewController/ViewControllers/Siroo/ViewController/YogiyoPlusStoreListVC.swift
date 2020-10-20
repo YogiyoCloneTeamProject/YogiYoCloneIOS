@@ -40,7 +40,6 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, Re
     private var codeSegmented: CustomTopCategoryView?
     
     private let categories: [String] = StoreinfoFetch.categories
-//        private let categoriesVC: [CategoryVC] = [CategoryVC](repeating: CategoryVC(), count: StoreinfoFetch.categories.count)
     
     private let categoriesVC: [CategoryVC] = [CategoryVC(), CategoryVC(), CategoryVC(), CategoryVC(), CategoryVC()]
     
@@ -57,7 +56,7 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, Re
     
     private let naviTitle : UILabel = {
         let label = UILabel()
-        label.text = "요기요 플러스"
+        label.text = "요기요 익스프레스"
         label.font =  UIFont(name: FontModel.customLight, size: 18)
         return label
     }()

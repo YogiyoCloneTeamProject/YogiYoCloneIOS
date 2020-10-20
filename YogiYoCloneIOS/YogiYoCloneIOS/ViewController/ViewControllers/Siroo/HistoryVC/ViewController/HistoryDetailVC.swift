@@ -25,14 +25,29 @@ class HistoryDetailVC: UIViewController {
     func configureView() {
         let wrapView = drawWrap(parentView: view)
         let closeButton: CloseButton = drawCloseButton(parentView: wrapView)
-        let scrollView = drawScroll(parentView: wrapView, prev: closeButton)
+        let scrollView = drawScroll(parentView: wrapView, prev: closeButton).getContentsView()
         let storeView = drawStore(parentView: scrollView)
         let reOrderButton = drawReOrderButton(parentView: scrollView, prev: storeView)
+        let cancelSection = drawSection(parentView: scrollView, prev: reOrderButton)
+        let menusSection = drawSection(parentView: scrollView, prev: cancelSection)
+        let totalAmountSection = drawSection(parentView: scrollView, prev: menusSection, lightTopLine: true)
+        let checkoutAmountSection = drawSection(parentView: scrollView, prev: totalAmountSection)
+        let payMethodSection = drawSection(parentView: scrollView, prev: checkoutAmountSection)
+        
     }
     
     // section
-    func drawSection() {
-        
+    func drawSection(parentView: UIView, prev: UIView, lightTopLine: Bool = false) -> UIView {
+        let sectionView = SectionView()
+        if lightTopLine {
+            sectionView.lightLine()
+        }
+        parentView.addSubview(sectionView)
+        sectionView.snp.makeConstraints { (make) in
+            make.height.equalTo(100)
+        }
+        self.commonConstraints(target: sectionView, to: parentView, prev: prev)
+        return sectionView
     }
     
     // stack 한줄 한줄 보여주는 부분
