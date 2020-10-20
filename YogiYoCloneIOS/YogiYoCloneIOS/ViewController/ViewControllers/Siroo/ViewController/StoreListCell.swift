@@ -25,7 +25,7 @@ class StoreListCell: UITableViewCell {
     
     private let storeNameLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontModel.customLight, size: 20)
+        label.font = UIFont(name: FontModel.customLight, size: 18)
         return label
     }()
     
@@ -38,51 +38,32 @@ class StoreListCell: UITableViewCell {
     private let storeRateLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: FontModel.customSemibold, size: 13)
+        label.font = UIFont(name: FontModel.customSemibold, size: 12)
         label.textColor = .black
         return label
     }()
     
-    private let squreView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        view.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
-        return view
-    }()
     
     private let reviewLabel : UILabel = {
         let label = UILabel()
-        label.font = FontModel.toSize.customSmallFont
+        label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .systemGray
         return label
     }()
     
     private let bestMenuLabel : UILabel = {
         let label = UILabel()
-        label.font = FontModel.toSize.customSmallFont
+        label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .systemGray
         return label
     }()
     
-//    private let estimatedTime : UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        label.font = FontModel.toSize.customSmallFont
-//        label.textColor = .black
-//
-//        return label
-//    }()
-    
-    private let estimatedTime : UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "clock"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.titleEdgeInsets = UIEdgeInsets(top: -1, left: -1, bottom: -1, right: -1)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
-        button.setTitleColor(.systemGray, for: .normal)
-        button.titleLabel?.font = UIFont(name: FontModel.customLight, size: 10)
-        button.imageView?.tintColor = .systemGray
-        return button
+    private let estimatedTime : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: FontModel.customLight, size: 12)
+        label.textColor = .darkGray
+        return label
     }()
     
     let cescoMark : UIButton = {
@@ -95,7 +76,7 @@ class StoreListCell: UITableViewCell {
     
     private let deliveryDiscountLabel : UILabel = {
         let label = UILabel()
-        label.font = FontModel.toSize.customSmallFont
+        label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .red
         return label
     }()
@@ -177,13 +158,7 @@ class StoreListCell: UITableViewCell {
             make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
-        storeNameLabel.text = restaurant?.name
-        storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
-        setImage(from: restaurant?.image ?? "")
-        reviewLabel.text = " ・ 리뷰 \(String(restaurant?.reviewCount ?? 0))"
-        deliveryDiscountLabel.text = "배달할인 \(String(((restaurant?.deliveryDiscount ?? 0)!)) )원"
-        estimatedTime.setTitle("\(String(describing: restaurant?.deliveryTime ?? ""))", for: .normal)
-        bestMenuLabel.text = restaurant?.representativeMenus.joined()
+        setData()
         
         deliveryDiscountLabel.snp.makeConstraints { (make) in
             make.top.equalTo(starImage.snp.bottom).offset(1)
@@ -208,12 +183,26 @@ class StoreListCell: UITableViewCell {
         }
     }
     
-    //    MARK:  Store Image Set
+//    MARK: Set Cell Data
+    
+    func setData() {
+        storeNameLabel.text = restaurant?.name
+        storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
+        setImage(from: restaurant?.image ?? "")
+        reviewLabel.text = " ・ 리뷰 \(String(restaurant?.reviewCount ?? 0))"
+        deliveryDiscountLabel.text = "배달할인 \(String(((restaurant?.deliveryDiscount ?? 0)!)) )원"
+        estimatedTime.text = restaurant?.deliveryTime
+        bestMenuLabel.text = restaurant?.representativeMenus.joined()
+    }
+    
+//    MARK:  Set Store Image
  
     func setImage(from url: String) {
         guard let imageURL = URL(string: url) else { return }
         storeImage.kf.setImage(with: imageURL)
     }
+    
+//    MARK: Set Value : LikeVC 에서 셀 재사용
     
     
     func setValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
