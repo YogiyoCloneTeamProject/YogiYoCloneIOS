@@ -70,6 +70,8 @@ class SearchVC: UIViewController {
   
   @objc func textfieldDid(_ sender : UITextField){
     
+    //2.반환한 데이터(DidSearchData)를 comeData에 넣고
+    // textfieldDid가 될때마다 data = comData로 할당하면서, tablevieview도 리로드 되도록한다...
     fechData(text: searchfield.text ?? "") { (comeData) in
       self.data = comeData
       DispatchQueue.main.async {
@@ -99,7 +101,7 @@ class SearchVC: UIViewController {
   
   //MARK: -fechData
   
-  //함수가 끝날 때 completion으로 DidSearchData를 반환한다.
+  //1.함수가 끝날 때 completion으로 DidSearchData를 반환한다.
   func fechData(text : String?, completion: @escaping ((DidSearchData) -> Void)){
     
     //변환
@@ -133,10 +135,13 @@ class SearchVC: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
+      if searchfield.text != "" {
       cell.textLabel?.text = data?.results?[indexPath.row].name
-
+      } else {
+        tableview.reloadData()
+      }
       return cell
-      
+
     }
     
   }
