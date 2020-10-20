@@ -111,6 +111,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         navigationController?.navigationBar.tintColor = .gray
         UIApplication.shared.statusBarStyle = .darkContent
         tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         title = "성수동2가 277-17 ▼"
     }
     
@@ -219,9 +220,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
             make.height.equalTo(40)
         }
     }
-    
-    
-    
+
     
 //    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
     
@@ -265,6 +264,7 @@ extension StoreListVC : StoreListFilterViewDelegate {
         print("정렬값 적용되었습니다 order: \(selectedOrder)")
         fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true)
         print("필터정렬 이벤트 리스너 : \(fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true))")
+        
 
     }
 
