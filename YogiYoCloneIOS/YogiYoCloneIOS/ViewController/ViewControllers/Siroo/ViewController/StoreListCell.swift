@@ -54,7 +54,6 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .systemGray
-        
         return label
     }()
     
@@ -65,13 +64,25 @@ class StoreListCell: UITableViewCell {
         return label
     }()
     
-    private let estimatedTime : UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = FontModel.toSize.customSmallFont
-        label.textColor = .black
-        
-        return label
+//    private let estimatedTime : UILabel = {
+//        let label = UILabel()
+//        label.textAlignment = .center
+//        label.font = FontModel.toSize.customSmallFont
+//        label.textColor = .black
+//
+//        return label
+//    }()
+    
+    private let estimatedTime : UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "clock"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.titleEdgeInsets = UIEdgeInsets(top: -1, left: -1, bottom: -1, right: -1)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+        button.setTitleColor(.systemGray, for: .normal)
+        button.titleLabel?.font = UIFont(name: FontModel.customLight, size: 10)
+        button.imageView?.tintColor = .systemGray
+        return button
     }()
     
     let cescoMark : UIButton = {
@@ -86,7 +97,6 @@ class StoreListCell: UITableViewCell {
         let label = UILabel()
         label.font = FontModel.toSize.customSmallFont
         label.textColor = .red
-        
         return label
     }()
     
@@ -111,9 +121,11 @@ class StoreListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func setCell() {
+        setUIConstraints()
+    }
+    
     //    MARK: SetUIConstraints
-    
-    
     
     private func setUIConstraints () {
         
@@ -130,6 +142,7 @@ class StoreListCell: UITableViewCell {
         cescoMark.snp.makeConstraints { (make) in
             make.top.equalTo(storeImage.snp.top)
             make.trailing.equalToSuperview().inset(20)
+            make.leading.equalTo(storeNameLabel.snp.trailing)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.1)
             make.height.equalTo(storeImage.snp.height).multipliedBy(0.35)
         }
@@ -143,6 +156,7 @@ class StoreListCell: UITableViewCell {
             make.top.equalTo(storeImage)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
             make.trailing.equalTo(cescoMark.snp.leading)
+            make.width.equalTo(80)
         }
         
         
@@ -163,13 +177,12 @@ class StoreListCell: UITableViewCell {
             make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
-        print("DEBUG : \(restaurant?.deliveryDiscount), \(restaurant?.name)")
         storeNameLabel.text = restaurant?.name
         storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
         setImage(from: restaurant?.image ?? "")
         reviewLabel.text = " ・ 리뷰 \(String(restaurant?.reviewCount ?? 0))"
         deliveryDiscountLabel.text = "배달할인 \(String(((restaurant?.deliveryDiscount ?? 0)!)) )원"
-        estimatedTime.text = restaurant?.deliveryTime
+        estimatedTime.setTitle("\(String(describing: restaurant?.deliveryTime ?? ""))", for: .normal)
         bestMenuLabel.text = restaurant?.representativeMenus.joined()
         
         deliveryDiscountLabel.snp.makeConstraints { (make) in
@@ -194,40 +207,9 @@ class StoreListCell: UITableViewCell {
             deliveryDiscountLabel.removeFromSuperview()
         }
     }
+    
     //    MARK:  Store Image Set
-    
-    //        if restaurant?.deliveryDiscount == 0 {
-    //            print("\(restaurant?.deliveryDiscount)")
-    //            estimatedTime.snp.makeConstraints { (make) in
-    //                make.top.equalTo(reviewLabel.snp.bottom).offset(1)
-    //                make.trailing.equalToSuperview().inset(20)
-    //            }
-    //
-    //            bestMenuLabel.snp.makeConstraints { (make) in
-    //                make.top.equalTo(starImage.snp.bottom).offset(1)
-    //                make.leading.equalTo(starImage.snp.leading)
-    //            }
-    //        } else  {
-    //            deliveryDiscountLabel.snp.makeConstraints { (make) in
-    //                make.top.equalTo(starImage.snp.bottom).offset(1)
-    //                make.leading.equalTo(starImage.snp.leading)
-    //            }
-    //
-    //            estimatedTime.snp.makeConstraints { (make) in
-    //                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-    //                make.trailing.equalToSuperview().inset(20)
-    //            }
-    //
-    //            bestMenuLabel.snp.makeConstraints { (make) in
-    //                make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-    //                make.leading.equalTo(deliveryDiscountLabel.snp.leading)
-    //                make.trailing.equalTo(estimatedTime.snp.leading)
-    //                make.bottom.equalToSuperview().inset(20)
-    //            }
-    //
-    //        }
-    //    }
-    
+ 
     func setImage(from url: String) {
         guard let imageURL = URL(string: url) else { return }
         storeImage.kf.setImage(with: imageURL)

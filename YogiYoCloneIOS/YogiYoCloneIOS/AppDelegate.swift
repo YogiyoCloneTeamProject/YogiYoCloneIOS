@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainTabVC()
-//        window?.rootViewController = MapVC()
+//        window?.rootViewController = MainTabVC()
+        window?.rootViewController = StoreListVC()
         window?.makeKeyAndVisible()
         return true
     }
