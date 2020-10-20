@@ -10,6 +10,7 @@ import UIKit
 
 class DidSearchVC : UIViewController {
   
+  var ii = [SearchData]()
   //public var restaurants: [AllListData.Results] = []
   var data : DidSearchData?
   var word : String = ""
@@ -102,7 +103,6 @@ class DidSearchVC : UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply.circle.fill"), style: .done, target: self, action: #selector(canceltoDidTab( _:)))
     navigationItem.rightBarButtonItem?.tintColor = .lightGray
       
-     // title: "취소", style: .plain, target: self, action: #selector(canceltoDidTab( _:)))
   }
   
   //MARK:- Aactions
@@ -154,7 +154,7 @@ extension DidSearchVC : UITextFieldDelegate{
 
 extension DidSearchVC : UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    10
+ 10
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,7 +163,9 @@ extension DidSearchVC : UITableViewDataSource {
 //      vc.searchValue
     
     let row = indexPath.row
-//    cell.searchValue(image: DidSearchData?.results[row].image,
+    cell.cescoMark
+    cell.restaurant?.averageRating
+    //    cell.searchValue(image: DidSearchData?.results[row].image,
 //                  title: DidSearchData?.results[row].name,
 //                  starPoint: DidSearchData?.results[row].star,
 //                  review: DidSearchData?.results[row].reviewCount,

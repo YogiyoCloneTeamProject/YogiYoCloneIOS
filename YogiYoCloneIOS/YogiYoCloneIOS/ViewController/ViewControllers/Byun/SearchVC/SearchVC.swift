@@ -17,6 +17,7 @@ class SearchVC: UIViewController {
   var searchList: SearchDataload?
   
   var data : DidSearchData?
+  //var testArr = [DidSearchData]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,14 +28,11 @@ class SearchVC: UIViewController {
     setNavi()
     setSearchfield()
     setTableView()
-   // fechData()
- //   filterData = datai
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(true)
-    fechData(text: searchfield.text)
-    }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
   
   //MARK:-Searchfield
   func setSearchfield(){
@@ -45,7 +43,7 @@ class SearchVC: UIViewController {
     searchfield.becomeFirstResponder() //항시대기
     searchfield.sizeToFit()
     searchfield.clearButtonMode = .always
-    searchfield.delegate = self
+   // searchfield.delegate = self
     searchfield.addTarget(self, action: #selector(textfieldDid(_ :)), for: .editingChanged)
   }
   //MARK:- navi
@@ -62,21 +60,22 @@ class SearchVC: UIViewController {
   }
   
   //MARK:- Aactions
-  
   @objc func searchDidTab(_ sender: UIButton){
     
   }
   
   @objc func cancelDidTab(_ sender: UIButton){
     self.resignFirstResponder()
-    
   }
   
   @objc func textfieldDid(_ sender : UITextField){
-    tableview.reloadData()
-    fechData(text: searchfield.text!)
-    print(searchfield.text)
     
+    fechData(text: searchfield.text ?? "") { (comeData) in
+      self.data = comeData
+      DispatchQueue.main.async {
+        self.tableview.reloadData()
+      }
+    }
   }
     
     func setTableView(){
@@ -99,77 +98,49 @@ class SearchVC: UIViewController {
 //  var filterData : [String]!
   
   //MARK: -fechData
-  func fechData(text : String?){
+  
+  //함수가 끝날 때 completion으로 DidSearchData를 반환한다.
+  func fechData(text : String?, completion: @escaping ((DidSearchData) -> Void)){
+    
     //변환
     let urlString = "http://52.79.251.125/restaurants?search=\(text ?? "")"
+    print("\(urlString)")
     guard let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else { return }
     var urlFragmentAllowed: CharacterSet
     let url = URL(string: encodedString)
     URLSession.shared.dataTask(with: url!) { (data, _, _) in
       guard let data = data else { return }
       do {
-        self.data = try JSONDecoder().decode(DidSearchData.self, from: data)
-      //print(data)
-        let next = self.data?.next
-        let previous = self.data?.previous
-        
-        let item = DidSearchData(next: next, previous: previous)
-      //  self.datai = item
-  //searchList
+        let searchData = try JSONDecoder().decode(DidSearchData.self, from: data)
+        completion(searchData)
+
         DispatchQueue.main.async{
-   //     self.tableView.reloadData()
+          print("ddddd")
         }
       } catch {
         print("catch")
       }
     }.resume()
   }
- 
   }
+
   
   
   extension SearchVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      data?.results!.count ?? 0
+      data?.results?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      fechData(text: searchfield.text)
       let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
-        cell.textLabel?.text = data?.results![indexPath.row].name
-      
+      cell.textLabel?.text = data?.results?[indexPath.row].name
 
-   //   self.data?.results![indexPath.row].name?.append(self.dataa)
-     
-   //   print("dataa : \(dataa)")
       return cell
       
     }
     
   }
 
-extension SearchVC : UITextFieldDelegate {
-  private func textFieldWilChangeSelection(_ textField: UITextField) {
-    DispatchQueue.main.async {
-      self.fechData(text: self.searchfield.text ?? "")
-      self.tableview.reloadData()
-    }
-    
-
-//    filterData = []
-//
-//    if searchfield.text == "" {
-//      filterData = datai
-//    }else {
-//    for index in datai {
-//      if index.lowercased().contains(textField.text?.lowercased() ?? "") {
-//        filterData.append(index)
-//      }
-//    }
-//    self.tableview.reloadData()
-//  }
-}
-}
 extension SearchVC : UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = DidSearchVC()
@@ -179,13 +150,14 @@ extension SearchVC : UITableViewDelegate {
     
    // let searchData = SearchData(id: , name: <#T##String?#>)
     
-    var item = data?.results![indexPath.row]
-    var searchData = DidSearchData.Results(id: item?.id, name: item?.name, star: item?.star, image: item?.image, deliveryDiscount: item?.deliveryCharge, deliveryCharge: item?.deliveryCharge, deliveryTime: item?.deliveryTime, reviewCount: item?.reviewCount, representativeMenus: item?.representativeMenus, ownerCommentCount: item?.ownerCommentCount)
+    var ii = data?.results
+    print("ii",ii)
     
-   // self.searchList?.results?.append(self.searchData)
-   // self.searchList?.results?.append()
-    print("searchData : \(searchData)")
-   // print("searchList : \(searchList)")
+//    var item = data?.results![indexPath.row]
+//    var searchData = DidSearchData.Results(id: item?.id, name: item?.name, star: item?.star, image: item?.image, deliveryDiscount: item?.deliveryCharge, deliveryCharge: item?.deliveryCharge, deliveryTime: item?.deliveryTime, reviewCount: item?.reviewCount, representativeMenus: item?.representativeMenus, ownerCommentCount: item?.ownerCommentCount)
+   
+    
+ //   print("searchData : \(searchData)")
    
     //  vc.menuValue(orderData: orderData)
     

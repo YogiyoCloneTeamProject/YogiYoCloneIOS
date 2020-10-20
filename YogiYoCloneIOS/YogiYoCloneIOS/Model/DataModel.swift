@@ -109,7 +109,6 @@ struct DidSearchData: Codable {
     
     
     struct Results: Codable {
-        
         let id: Int?
         let name: String?
         let star: Double?
