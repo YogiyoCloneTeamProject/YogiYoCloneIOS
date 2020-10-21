@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DidSearchVC : UIViewController {
   
- // var searchList = [DidSearchData]()
-  //public var restaurants: [AllListData.Results] = []
-  var data : DidSearchData?
+  var searchMager = SearchManager.shared
   var searchList: [DidSearchData] = []
-
+ 
+  var data : DidSearchData?
     
   let searchfield = UITextField()
   let topView = TopView()
@@ -25,60 +25,16 @@ class DidSearchVC : UIViewController {
     navigationItem.titleView = searchfield
     view.backgroundColor = .yellow
     
+    searchList = searchMager.selectSearch()
+    print("searchMager:" ,searchMager.selectSearch())
+   // print("searchList: \(searchMager.showMeSearchs(search: [DidSearchData]()))")
     setNavi()
     setSearchfield()
     setTableView()
     topViewFrame()
     constrain()
-//    loadData { (DidSearchData) in
-//        self.didSearchdata = DidSearchData
- //   }
-  }
- 
-  //받기
-  func searchValue(didSearchData: [DidSearchData]) -> [DidSearchData]{
-    print("DidVC DidSearchData = \(didSearchData)")
-    return searchList
-print(searchList)
-    
-  }
 
-   
-  
-  
-  func fechData(){
-    //\(word.self)
-    let url = URL(string: "http://52.79.251.125/restaurants?/tags?name=")
-    URLSession.shared.dataTask(with: url!)  { (data, _, _) in
-      guard let data = data else { return }
-      do {
-        self.data = try JSONDecoder().decode(DidSearchData.self, from: data)
-       print(data)
-        
-        
-//        let id = self.data?.id
-//        let name = self.data?.name
-//        let averageRating = self.data?.averageRating
-//        let image = self.data?.image
-//        let deliveryDiscount = self.data?.deliveryDiscount
-//        let deliveryCharge = self.data?.deliveryCharge
-//        let deliveryTime = self.data?.deliveryTime
-//        let reviewCount = self.data?.reviewCount
-        let representativeMenus = self
-        
-        
-       // let searchList = SearchData(id: id!, name: name!, averageRating: averageRating!, image: image!, deliveryDiscount: deliveryDiscount!, deliveryCharge: deliveryCharge!, deliveryTime: deliveryTime!, reviewCount: reviewCount!, representativeMenus: [String]())
-   
-        
-        DispatchQueue.main.async{
-       // self.tableView.reloadData()
-        }
-      } catch {
-        print("catch")
-      }
-    }.resume()
   }
-  
   
   
   //MARK:-Searchfield
@@ -148,7 +104,6 @@ print(searchList)
       tableV.bottomAnchor.constraint(equalTo: view.bottomAnchor)
       
     ])
-
 }
   
 }
@@ -160,28 +115,27 @@ extension DidSearchVC : UITextFieldDelegate{
 
 extension DidSearchVC : UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-   10
-    // ii.count
+    searchList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "StoreListCell", for: indexPath) as! StoreListCell
+    
 
-//      vc.searchValue
+    let search = searchList[indexPath.row].results
+    let searchRetrun = searchMager.retunArray()
+    let searchArr = search?[searchRetrun]
     
-    let row = indexPath.row
+    let imageurl = URL(string: searchArr?.image ?? "")
     
-    
-//    cell.cescoMark
-//    cell.restaurant?.averageRating
-    //    cell.searchValue(image: DidSearchData?.results[row].image,
-//                  title: DidSearchData?.results[row].name,
-//                  starPoint: DidSearchData?.results[row].star,
-//                  review: DidSearchData?.results[row].reviewCount,
-//                  discount: DidSearchData?.results[row].deliveryDiscount,
-//                  explain: DidSearchData?.results[row].representativeMenus)
-    
-   // cell.restaurant = self.restaurants[indexPath.row]
+    cell.storeImage.kf.setImage(with: imageurl)
+    cell.storeNameLabel.text = searchArr?.name ?? ""
+    cell.storeRateLabel.text = String(searchArr?.star ?? 0.0)
+    cell.reviewLabel.text = String(searchArr?.reviewCount ?? 0)
+    cell.bestMenuLabel.text = searchArr?.representativeMenus ?? ""
+    cell.estimatedTime.text = searchArr?.deliveryTime
+    cell.deliveryDiscountLabel.text = String(searchArr?.deliveryDiscount ?? 0)
+  
     return cell
   }
   

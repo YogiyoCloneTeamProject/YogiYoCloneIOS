@@ -11,6 +11,8 @@ import Foundation
 
 class SearchManager {
   
+  //싱글톤
+  static let shared = SearchManager()
   var searchList: [DidSearchData] = []
   
   
@@ -19,9 +21,15 @@ class SearchManager {
     searchList = search
   }
   
-  //써치리스트 리턴
+  //선택 리턴
   func selectSearch() -> [DidSearchData]{
     return searchList
+  }
+  
+  var number = 0
+  func retunArray() -> Int {
+    //number += 1
+    return number
   }
   
 }
