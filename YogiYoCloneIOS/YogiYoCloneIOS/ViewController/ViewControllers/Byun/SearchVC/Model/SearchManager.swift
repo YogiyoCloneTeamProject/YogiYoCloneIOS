@@ -26,9 +26,10 @@ class SearchManager {
     return searchList
   }
   
+  
+  //배열 벗기기
   var number = 0
   func retunArray() -> Int {
-    //number += 1
     return number
   }
   

@@ -22,8 +22,6 @@ class SearchVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
     navigationItem.titleView = searchfield
     view.backgroundColor = .yellow
     setNavi()
@@ -100,7 +98,6 @@ class SearchVC: UIViewController {
   //1.함수가 끝날 때 completion으로 DidSearchData를 반환한다.
   func fechData(text : String?, completion: @escaping ((DidSearchData) -> Void)){
 
-    var searcharray : [DidSearchData] = []
     //변환
     let urlString = "http://52.79.251.125/restaurants?search=\(text ?? "")"
     print("\(urlString)")
@@ -112,11 +109,8 @@ class SearchVC: UIViewController {
       do {
         let searchData = try JSONDecoder().decode(DidSearchData.self, from: data)
         completion(searchData)
-//        var searchArray = try JSONDecoder().decode([DidSearchData].self, from: data)
 
-        
         DispatchQueue.main.async{
-          print("ddddd")
         }
       } catch {
         print("catch")
@@ -125,68 +119,10 @@ class SearchVC: UIViewController {
   }
   }
 
+extension SearchVC: UITextFieldDelegate {
+
   
-  
-  extension SearchVC : UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      data?.results?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")! as UITableViewCell
-      if searchfield.text != "" {
-      cell.textLabel?.text = data?.results?[indexPath.row].name
-      } else {
-        tableview.reloadData()
-      }
-      return cell
-
-    }
-    
-  }
-
-extension SearchVC : UITableViewDelegate {
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = DidSearchVC()
-
-    let index = data!.results?[indexPath.row]
-    print(index , "index")
-    var searchData = DidSearchData(next: data!.next, previous: data!.previous, results: [DidSearchData.Results(id: index!.id, name: index?.name, star: index?.star, image: index?.image, deliveryDiscount: index?.deliveryDiscount, deliveryCharge: index?.deliveryCharge, deliveryTime: index?.deliveryTime, reviewCount: index?.reviewCount, representativeMenus: index?.representativeMenus, ownerCommentCount: index?.ownerCommentCount)])
-    
-    self.searchList = searchData
-    
-    
-    guard let searchList = self.searchList else {return}
-
-    //데이터 모델에 검색 보여진 아이들 배열에 전달
-    self.searchMager.showMeSearchs(search: [searchList])
-    print("self",searchList)
-  //  print("ii", ii)
-    
-  //  let searchData = DidSearchData(next: data!.next, previous: data!.previous, results: [DidSearchData.Results(id: index!.id, name: index?.name, star: index?.star, image: index?.image, deliveryDiscount: index?.deliveryDiscount, deliveryCharge: index?.deliveryCharge, deliveryTime: index?.deliveryTime, reviewCount: index?.reviewCount, representativeMenus: index?.representativeMenus, ownerCommentCount: index?.ownerCommentCount)])
-    
-  
-    //OrderData(menu: data!.id, name: data!.name, count: 1, price: data!.price)
-    
-  //  vc.searchValue(didSearchData: [DidSearchData]())
-    
-    navigationController?.pushViewController(vc, animated: true)
-  
-//보내는 곳
-
-   // vc.searchValue()
-
-  //  print("ii",ii)
-    
-    
-    
-//    var item = data?.results![indexPath.row]
-//    var searchData = DidSearchData.Results(id: item?.id, name: item?.name, star: item?.star, image: item?.image, deliveryDiscount: item?.deliveryCharge, deliveryCharge: item?.deliveryCharge, deliveryTime: item?.deliveryTime, reviewCount: item?.reviewCount, representativeMenus: item?.representativeMenus, ownerCommentCount: item?.ownerCommentCount)
-   
-    
- //   print("searchData : \(searchData)")
-   
-    //  vc.menuValue(orderData: orderData)
-    
-  }
 }
+
+  
+  
