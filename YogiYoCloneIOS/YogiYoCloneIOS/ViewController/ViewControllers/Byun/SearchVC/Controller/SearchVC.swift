@@ -23,7 +23,6 @@ class SearchVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.titleView = searchfield
-    view.backgroundColor = .yellow
     setNavi()
     setSearchfield()
     setTableView()
@@ -35,6 +34,7 @@ class SearchVC: UIViewController {
   
   //MARK:-Searchfield
   func setSearchfield(){
+   // searchfield.delegate = self
     searchfield.sizeToFit()
     searchfield.placeholder = "음식점이나 메뉴명으로 검색하세요."
     searchfield.keyboardType = .default
@@ -59,7 +59,6 @@ class SearchVC: UIViewController {
   
   //MARK:- Aactions
   @objc func searchDidTab(_ sender: UIButton){
-    
   }
   
   @objc func cancelDidTab(_ sender: UIButton){
@@ -118,11 +117,22 @@ class SearchVC: UIViewController {
     }.resume()
   }
   }
-
+/*
 extension SearchVC: UITextFieldDelegate {
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    if textField == searchfield {
+      print("eee")
 
-  
+      searchfield.becomeFirstResponder()
+  }
+    return true
 }
+  //화면터치시 키보드 종료
+//   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//     self.searchfield.resignFirstResponder()
+//       }
 
+}
+*/
   
   
