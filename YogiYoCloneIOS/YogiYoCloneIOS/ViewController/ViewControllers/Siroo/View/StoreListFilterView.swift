@@ -362,14 +362,15 @@ class StoreListFilterView: UIView {
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+
+            i.imageView?.tintColor = .darkGray
         }
         selectChosenOrder(0)
 
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.imageView?.tintColor = .darkGray
         }
         selectChosenPayment(0)
   
