@@ -82,14 +82,15 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         let headerView = UIView()
         let tableView = UITableView()
         headerView.backgroundColor = .white
-        let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let headerLabel = UILabel(frame: CGRect(x: 18, y: 10, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let image = UIImage(systemName: "questionmark.circle")
         
         headerLabel.textColor = .black
         headerLabel.font = UIFont(name: FontModel.customSemibold, size: 15)
         headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
-        
+
         return headerView
     }
     

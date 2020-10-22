@@ -25,10 +25,11 @@ class SectionView: UIView {
         topLine.backgroundColor = .systemGray
         addSubview(topLine)
         
+        
         topLine.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(self)
             make.top.equalTo(self)
-            make.height.equalTo(1.5)
+            make.height.equalTo(0.5)
         }
         
         
@@ -36,7 +37,7 @@ class SectionView: UIView {
     func lightLine() {
         topLine.backgroundColor = .lightGray
         topLine.snp.makeConstraints { (make) in
-            make.height.equalTo(1)
+            make.height.equalTo(0.5)
         }
     }
 }

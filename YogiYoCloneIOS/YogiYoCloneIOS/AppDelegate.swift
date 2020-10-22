@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainTabVC()
-//        window?.rootViewController = StoreListVC()
+        window?.rootViewController = HistoryDetailVC()
         window?.makeKeyAndVisible()
         return true
     }

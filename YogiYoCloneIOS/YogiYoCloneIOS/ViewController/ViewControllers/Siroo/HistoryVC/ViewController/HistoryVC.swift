@@ -48,7 +48,6 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         // 컨텐츠 view 만들기
         configureContentView()
         historyFetch.historyFetch()
-
     }
     
     
