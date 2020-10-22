@@ -22,7 +22,6 @@ class HistoryCell: UITableViewCell {
             historySetImage(from: history?.restautantImage ?? "")
             orderStatus.text = history?.status
             orderMenu.text = history?.orderMenu
-            
         }
     }
     
