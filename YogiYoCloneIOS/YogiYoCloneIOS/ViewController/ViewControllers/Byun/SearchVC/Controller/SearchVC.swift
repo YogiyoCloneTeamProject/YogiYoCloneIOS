@@ -12,7 +12,6 @@ class SearchVC: UIViewController {
   
   let searchfield = UITextField()
   let tableview = UITableView()
-  let id : Int = 0
   //SearchData만 담기
   var searchList: DidSearchData?
   
@@ -48,13 +47,11 @@ class SearchVC: UIViewController {
   //MARK:- navi
   func setNavi(){
     navigationController?.navigationBar.barTintColor = .white
-    //navigationController?.navigationBar.tintColor = .systemPink
     navigationController?.navigationBar.isTranslucent = true
     navigationController?.navigationBar.barStyle = .default
     
     navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchDidTab( _:)))
     navigationItem.leftBarButtonItem?.tintColor = .systemPink
-
   }
   
   //MARK:- Aactions
@@ -73,7 +70,6 @@ class SearchVC: UIViewController {
       self.data = comeData
       DispatchQueue.main.async {
         self.tableview.reloadData()
-        
       }
     }
   }
@@ -116,6 +112,10 @@ class SearchVC: UIViewController {
       }
     }.resume()
   }
+}
+
+func unSearch(){
+  print("검색결과가 없습니다.")
 }
   
 /*

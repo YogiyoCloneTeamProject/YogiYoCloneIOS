@@ -23,13 +23,7 @@ extension DidSearchVC : UITableViewDataSource {
     
     let imageurl = URL(string: searchArr?.image ?? "")
     
-    cell.storeImage.kf.setImage(with: imageurl)
-    cell.storeNameLabel.text = searchArr?.name ?? ""
-    cell.storeRateLabel.text = String(searchArr?.star ?? 0.0)
-    cell.reviewLabel.text = " ・ 리뷰\(  String(searchArr?.reviewCount ?? 0))"
-    cell.bestMenuLabel.text = searchArr?.representativeMenus ?? ""
-    cell.estimatedTime.text = searchArr?.deliveryTime
-    cell.deliveryDiscountLabel.text = "배달할인   \(searchArr?.deliveryDiscount ?? 0)원"
+    cell.searchValue(image: searchArr?.image, title: searchArr?.name, starPoint: searchArr?.star, review: searchArr?.reviewCount, discount: searchArr?.deliveryDiscount, explain: searchArr?.representativeMenus)
   
     return cell
   }

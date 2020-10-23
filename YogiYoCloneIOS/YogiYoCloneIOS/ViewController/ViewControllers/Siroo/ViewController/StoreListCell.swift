@@ -220,6 +220,9 @@ class StoreListCell: UITableViewCell {
         cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }
     
+  
+  //    MARK: searchValue : SearchVC 에서 셀 재사용
+  
     func searchValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
         
         let discountText = formatter.string(from: discount as NSNumber? ?? 0)
@@ -230,8 +233,7 @@ class StoreListCell: UITableViewCell {
         setImage(from: image ?? "")
         storeNameLabel.text = title
         storeRateLabel.text = "\(starPoint ?? 0)"
-        reviewLabel.text = "리뷰 \(review ?? 0)"
+        reviewLabel.text = " ・ 리뷰 \(review ?? 0)"
         bestMenuLabel.text = explain
-        cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }
 }

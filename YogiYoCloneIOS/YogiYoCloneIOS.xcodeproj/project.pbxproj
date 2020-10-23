@@ -871,8 +871,8 @@
 			isa = PBXGroup;
 			children = (
 				73A325C02540140D003377D2 /* Model */,
-				73A325BF254013F9003377D2 /* Extension */,
 				73A325BE254013C7003377D2 /* Controller */,
+				73A325BF254013F9003377D2 /* Extension */,
 				73A7C5A4253F037300744979 /* View */,
 			);
 			path = SearchVC;
