@@ -109,8 +109,7 @@ struct DidSearchData: Codable {
     
     
     struct Results: Codable {
-        
-        let id: Int?
+      var id: Int?
         let name: String?
         let star: Double?
         let image: String?
@@ -446,8 +445,7 @@ struct UrlBase {
         static let menuInstance = "http://52.79.251.125/menu/2"
         static let order = "http://52.79.251.125/orders"
         
-        
-        
+
         static var lat = "37.545258"
         static var lon = "127.057174"
     }

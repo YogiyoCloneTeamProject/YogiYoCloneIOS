@@ -7,71 +7,40 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DidSearchVC : UIViewController {
   
-  //public var restaurants: [AllListData.Results] = []
+  
+  var searchMager = SearchManager.shared
+  private let menuList = MenuListVC()
+  
+  var searchList: [DidSearchData] = []
   var data : DidSearchData?
-  var word : String = ""
-    
+
   let searchfield = UITextField()
   let topView = TopView()
   let tableV = UITableView()
 
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.titleView = searchfield
-    view.backgroundColor = .yellow
     
+    navigationItem.titleView = searchfield    
+    searchList = searchMager.selectSearch()
+    print("searchMager:" ,searchMager.selectSearch())
+   // print("searchList: \(searchMager.showMeSearchs(search: [DidSearchData]()))")
     setNavi()
     setSearchfield()
     setTableView()
     topViewFrame()
     constrain()
-    
-//    loadData { (DidSearchData) in
-//        self.didSearchdata = DidSearchData
-//        DispatchQueue.main.async {
-//            self.setUI()
-//            self.setLayout()
-//        }
- //   }
+
   }
   
-  
-  func fechData(){
-    //\(word.self)
-    let url = URL(string: "http://52.79.251.125/restaurants?/tags?name=")
-    URLSession.shared.dataTask(with: url!)  { (data, _, _) in
-      guard let data = data else { return }
-      do {
-        self.data = try JSONDecoder().decode(DidSearchData.self, from: data)
-       print(data)
-        
-        
-//        let id = self.data?.id
-//        let name = self.data?.name
-//        let averageRating = self.data?.averageRating
-//        let image = self.data?.image
-//        let deliveryDiscount = self.data?.deliveryDiscount
-//        let deliveryCharge = self.data?.deliveryCharge
-//        let deliveryTime = self.data?.deliveryTime
-//        let reviewCount = self.data?.reviewCount
-        let representativeMenus = self
-        
-        
-       // let searchList = SearchData(id: id!, name: name!, averageRating: averageRating!, image: image!, deliveryDiscount: deliveryDiscount!, deliveryCharge: deliveryCharge!, deliveryTime: deliveryTime!, reviewCount: reviewCount!, representativeMenus: [String]())
-   
-        
-        DispatchQueue.main.async{
-       // self.tableView.reloadData()
-        }
-      } catch {
-        print("catch")
-      }
-    }.resume()
+  override func viewWillAppear(_ animated: Bool) {
+    tabBarController?.tabBar.isHidden = false
   }
-  
   
   
   //MARK:-Searchfield
@@ -102,7 +71,6 @@ class DidSearchVC : UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply.circle.fill"), style: .done, target: self, action: #selector(canceltoDidTab( _:)))
     navigationItem.rightBarButtonItem?.tintColor = .lightGray
       
-     // title: "취소", style: .plain, target: self, action: #selector(canceltoDidTab( _:)))
   }
   
   //MARK:- Aactions
@@ -119,7 +87,7 @@ class DidSearchVC : UIViewController {
   func setTableView(){
     
     tableV.dataSource = self
-    //tableview.delegate = self
+    tableV.delegate = self
     tableV.rowHeight = 120
     tableV.backgroundColor = .white
     tableV.separatorStyle = .singleLine
@@ -142,7 +110,6 @@ class DidSearchVC : UIViewController {
       tableV.bottomAnchor.constraint(equalTo: view.bottomAnchor)
       
     ])
-
 }
   
 }
@@ -152,27 +119,3 @@ extension DidSearchVC : UITextFieldDelegate{
   }
 }
 
-extension DidSearchVC : UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    10
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "StoreListCell", for: indexPath) as! StoreListCell
-//    let vc =
-//      vc.searchValue
-    
-    let row = indexPath.row
-//    cell.searchValue(image: DidSearchData?.results[row].image,
-//                  title: DidSearchData?.results[row].name,
-//                  starPoint: DidSearchData?.results[row].star,
-//                  review: DidSearchData?.results[row].reviewCount,
-//                  discount: DidSearchData?.results[row].deliveryDiscount,
-//                  explain: DidSearchData?.results[row].representativeMenus)
-    
-   // cell.restaurant = self.restaurants[indexPath.row]
-    return cell
-  }
-  
-
-}
