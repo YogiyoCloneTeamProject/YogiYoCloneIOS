@@ -21,10 +21,12 @@ extension DidSearchVC : UITableViewDataSource {
     let searchRetrun = searchMager.retunArray()
     let searchArr = search?[searchRetrun]
     
-    let imageurl = URL(string: searchArr?.image ?? "")
+    _ = URL(string: searchArr?.image ?? "")
     
-    cell.searchValue(image: searchArr?.image, title: searchArr?.name, starPoint: searchArr?.star, review: searchArr?.reviewCount, discount: searchArr?.deliveryDiscount, explain: searchArr?.representativeMenus)
-  
+    cell.setValue(image: searchArr?.image, title: searchArr?.name, starPoint: searchArr?.star, review: searchArr?.reviewCount, discount: searchArr?.deliveryDiscount, explain: searchArr?.representativeMenus)
+    cell.cescoMark.setImage(UIImage(named: "cesco"), for: .normal)
+    cell.estimatedTime.text = searchArr?.deliveryTime ?? ""
+    
     return cell
   }
 }
