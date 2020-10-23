@@ -12,7 +12,7 @@ class SearchVC: UIViewController {
   
   let searchfield = UITextField()
   let tableview = UITableView()
-  
+  let id : Int = 0
   //SearchData만 담기
   var searchList: DidSearchData?
   
@@ -116,7 +116,8 @@ class SearchVC: UIViewController {
       }
     }.resume()
   }
-  }
+}
+  
 /*
 extension SearchVC: UITextFieldDelegate {
   func textFieldShouldClear(_ textField: UITextField) -> Bool {

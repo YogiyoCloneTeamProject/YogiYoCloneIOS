@@ -17,7 +17,6 @@ extension DidSearchVC : UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "StoreListCell", for: indexPath) as! StoreListCell
     
-
     let search = searchList[indexPath.row].results
     let searchRetrun = searchMager.retunArray()
     let searchArr = search?[searchRetrun]
@@ -34,7 +33,5 @@ extension DidSearchVC : UITableViewDataSource {
   
     return cell
   }
-  
-
 }
 

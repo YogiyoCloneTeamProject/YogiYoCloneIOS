@@ -11,17 +11,21 @@ import Kingfisher
 
 class DidSearchVC : UIViewController {
   
+  
   var searchMager = SearchManager.shared
+  private let menuList = MenuListVC()
+  
   var searchList: [DidSearchData] = []
- 
   var data : DidSearchData?
-    
+
   let searchfield = UITextField()
   let topView = TopView()
   let tableV = UITableView()
 
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     navigationItem.titleView = searchfield
     view.backgroundColor = .yellow
     
@@ -81,7 +85,7 @@ class DidSearchVC : UIViewController {
   func setTableView(){
     
     tableV.dataSource = self
-    //tableview.delegate = self
+    tableV.delegate = self
     tableV.rowHeight = 120
     tableV.backgroundColor = .white
     tableV.separatorStyle = .singleLine

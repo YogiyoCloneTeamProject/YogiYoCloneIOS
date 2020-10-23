@@ -78,6 +78,7 @@
 		731B059F2511F45D005BC1DC /* OrderlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B059E2511F45D005BC1DC /* OrderlistCell.swift */; };
 		731B05A12511FBDA005BC1DC /* ShapeLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B05A02511FBDA005BC1DC /* ShapeLayerView.swift */; };
 		731B05A525120B2E005BC1DC /* miniListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B05A425120B2E005BC1DC /* miniListCell.swift */; };
+		7343F05B25425901003CF79A /* DidSTableViewDalegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343F05A25425901003CF79A /* DidSTableViewDalegate.swift */; };
 		734EE72B2513CA2C0091893C /* paymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734EE72A2513CA2C0091893C /* paymentCell.swift */; };
 		7354B1A424EF9836001903AF /* ColorPiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7354B1A324EF9835001903AF /* ColorPiker.swift */; };
 		739A42CA24F5F7F300A51BE0 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A42C924F5F7F300A51BE0 /* ShareView.swift */; };
@@ -252,6 +253,7 @@
 		731B059E2511F45D005BC1DC /* OrderlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderlistCell.swift; sourceTree = "<group>"; };
 		731B05A02511FBDA005BC1DC /* ShapeLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeLayerView.swift; sourceTree = "<group>"; };
 		731B05A425120B2E005BC1DC /* miniListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniListCell.swift; sourceTree = "<group>"; };
+		7343F05A25425901003CF79A /* DidSTableViewDalegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidSTableViewDalegate.swift; sourceTree = "<group>"; };
 		734EE72A2513CA2C0091893C /* paymentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymentCell.swift; sourceTree = "<group>"; };
 		7354B1A324EF9835001903AF /* ColorPiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPiker.swift; sourceTree = "<group>"; };
 		739A42C924F5F7F300A51BE0 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -709,6 +711,7 @@
 			isa = PBXGroup;
 			children = (
 				73A325D625401766003377D2 /* DidSTableViewDataSource.swift */,
+				7343F05A25425901003CF79A /* DidSTableViewDalegate.swift */,
 			);
 			path = DidSearchVC;
 			sourceTree = "<group>";
@@ -1436,6 +1439,7 @@
 				6E91215924FA50E7003D86F0 /* RestaurantPlusCustomCell.swift in Sources */,
 				DE21FA6F24F4AC5B004D8A56 /* CustomTopCategoryView.swift in Sources */,
 				6E5AFD3D253ACF36004A21C5 /* MapTextFieldDelegate.swift in Sources */,
+				7343F05B25425901003CF79A /* DidSTableViewDalegate.swift in Sources */,
 				731B05812510E68E005BC1DC /* OrderVC.swift in Sources */,
 				DE9610B42522467900F371F4 /* HistoryDetailVC.swift in Sources */,
 				D37C9DA824FA5CEE00A7C9F2 /* BottomCell.swift in Sources */,
@@ -1679,7 +1683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.YogiYoCloneTeamIOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YogiYoCloneTeamIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
