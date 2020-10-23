@@ -26,9 +26,7 @@ class DidSearchVC : UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.titleView = searchfield
-    view.backgroundColor = .yellow
-    
+    navigationItem.titleView = searchfield    
     searchList = searchMager.selectSearch()
     print("searchMager:" ,searchMager.selectSearch())
    // print("searchList: \(searchMager.showMeSearchs(search: [DidSearchData]()))")
@@ -38,6 +36,10 @@ class DidSearchVC : UIViewController {
     topViewFrame()
     constrain()
 
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    tabBarController?.tabBar.isHidden = false
   }
   
   

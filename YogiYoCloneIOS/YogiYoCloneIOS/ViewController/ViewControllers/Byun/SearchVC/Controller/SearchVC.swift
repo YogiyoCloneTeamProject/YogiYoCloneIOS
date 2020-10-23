@@ -27,6 +27,10 @@ class SearchVC: UIViewController {
     setTableView()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    tabBarController?.tabBar.isHidden = false
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
