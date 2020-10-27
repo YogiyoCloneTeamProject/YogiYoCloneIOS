@@ -14,6 +14,15 @@ class HistoryDetailVC: UIViewController {
 
     // leading, trailing padding
     private let padding = 20
+    let storeView = StoreButtonView()
+    
+    private let orderStatus : UILabel = {
+        let label = UILabel()
+        label.text = "주문취소"
+        label.font = UIFont(name: FontModel.customSemibold, size: 20)
+        label.textColor = .darkGray
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,25 +43,28 @@ class HistoryDetailVC: UIViewController {
         let checkoutAmountSection = drawSection(parentView: scrollView, prev: totalAmountSection)
         let payMethodSection = drawSection(parentView: scrollView, prev: checkoutAmountSection)
         
+        
     }
     
-    // section
+    // Section
     func drawSection(parentView: UIView, prev: UIView, lightTopLine: Bool = false) -> UIView {
         let sectionView = SectionView()
         if lightTopLine {
             sectionView.lightLine()
         }
+        
         parentView.addSubview(sectionView)
         sectionView.snp.makeConstraints { (make) in
             make.height.equalTo(100)
         }
         self.commonConstraints(target: sectionView, to: parentView, prev: prev)
+
         return sectionView
     }
     
     // stack 한줄 한줄 보여주는 부분
     func drawStackLine() {
-        
+        let stack = UIStackView(arrangedSubviews: [orderStatus])
     }
     
     // wrapView 그리기
@@ -98,12 +110,11 @@ class HistoryDetailVC: UIViewController {
     
     // 상점이름 및 링크
     func drawStore(parentView: UIView) -> StoreButtonView {
-        let storeView = StoreButtonView()
         parentView.addSubview(storeView)
         storeView.snp.makeConstraints { (make) in
             make.top.equalTo(parentView).offset(20)
+            make.leading.equalTo(parentView)
         }
-        fillLayoutConstraints(target: storeView, to: parentView)
         return storeView
     }
     
@@ -111,9 +122,11 @@ class HistoryDetailVC: UIViewController {
     func drawReOrderButton(parentView: UIView, prev: UIView) -> ReOrderButton {
         let reOrderButton = ReOrderButton()
         parentView.addSubview(reOrderButton)
+        reOrderButton.snp.makeConstraints { (make) in
+            make.top.equalTo(storeView.snp.bottom).multipliedBy(0.8)
+        }
         loactedTopContsraints(target: reOrderButton, to: prev)
         return reOrderButton
-        
     }
     
     // 일반적 section 공통 제약 조건

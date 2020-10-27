@@ -146,8 +146,7 @@ struct DidSearchData: Codable {
     
     
     struct Results: Codable {
-        
-        let id: Int?
+      var id: Int?
         let name: String?
         let star: Double?
         let image: String?
@@ -457,7 +456,6 @@ struct OrderListData : Codable {
             }
         }
     }
-
 
 struct UrlBase {
     

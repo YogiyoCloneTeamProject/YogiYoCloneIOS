@@ -18,12 +18,12 @@ class StoreListCell: UITableViewCell {
     static let identifier = "StoreListCell"
     
     //    MARK: Properties
-    private let storeImage : UIImageView = {
+    let storeImage : UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    private let storeNameLabel : UILabel = {
+    let storeNameLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: FontModel.customLight, size: 18)
         return label
@@ -35,7 +35,7 @@ class StoreListCell: UITableViewCell {
         return imageView
     }()
     
-    private let storeRateLabel : UILabel = {
+    let storeRateLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont(name: FontModel.customSemibold, size: 12)
@@ -44,21 +44,21 @@ class StoreListCell: UITableViewCell {
     }()
     
     
-    private let reviewLabel : UILabel = {
+    let reviewLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .systemGray
         return label
     }()
     
-    private let bestMenuLabel : UILabel = {
+    let bestMenuLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .systemGray
         return label
     }()
     
-    private let estimatedTime : UILabel = {
+    let estimatedTime : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont(name: FontModel.customLight, size: 12)
@@ -74,7 +74,7 @@ class StoreListCell: UITableViewCell {
         return button
     }()
     
-    private let deliveryDiscountLabel : UILabel = {
+    let deliveryDiscountLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .red
@@ -202,7 +202,7 @@ class StoreListCell: UITableViewCell {
         storeImage.kf.setImage(with: imageURL)
     }
     
-//    MARK: Set Value : LikeVC 에서 셀 재사용
+//    MARK: Set Value : LikeVC,SearchVC 에서 셀 재사용
     
     
     func setValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
@@ -220,18 +220,4 @@ class StoreListCell: UITableViewCell {
         cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }
     
-    func searchValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
-        
-        let discountText = formatter.string(from: discount as NSNumber? ?? 0)
-        
-        discountText != "0" ? (deliveryDiscountLabel.text = "배달할인 \(discountText ?? "0")원") :
-            (deliveryDiscountLabel.text = nil)
-        
-        setImage(from: image ?? "")
-        storeNameLabel.text = title
-        storeRateLabel.text = "\(starPoint ?? 0)"
-        reviewLabel.text = "리뷰 \(review ?? 0)"
-        bestMenuLabel.text = explain
-        cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
-    }
 }

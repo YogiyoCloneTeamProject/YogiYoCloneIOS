@@ -32,17 +32,17 @@ class OrderManager {
     orderList.removeAll()
   }
   
-  func totalPrice() -> Int{
-    var total = 0
-    print("오더리스트갯수 확인: ", orderList.count)
-    orderList.forEach
-    {
-      total += $0.price
-      $0.option.forEach{
-        total += $0.price
-      }
-    }
-    return 10000
-  }
+//  func totalPrice() -> Int{
+//    var total = 0
+//    print("오더리스트갯수 확인: ", orderList.count)
+//    orderList.forEach
+//    {
+//      total += $0.price
+//      $0.option.forEach{
+//        total += $0.price
+//      }
+//    }
+//    return 10000
+//  }
   
 }
