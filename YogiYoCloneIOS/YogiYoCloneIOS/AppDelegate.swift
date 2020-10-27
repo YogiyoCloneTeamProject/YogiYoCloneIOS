@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainTabVC()
-//        window?.rootViewController = HistoryDetailVC()
+//        window?.rootViewController = MapVC()
+
         window?.makeKeyAndVisible()
         return true
     }

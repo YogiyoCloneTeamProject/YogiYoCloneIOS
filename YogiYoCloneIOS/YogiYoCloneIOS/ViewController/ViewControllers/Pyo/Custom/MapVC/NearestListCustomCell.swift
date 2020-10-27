@@ -21,24 +21,23 @@ class NearestListCustomCell: UITableViewCell {
     
     private let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "요기요시 요기요구 요기요동 어디요리 1-2 오영빌딩"
         label.font = UIFont(name: FontModel.customLight, size: 16)
         label.numberOfLines = 2
         return label
     }()
     private let addressRoadLabel: UILabel = {
         let label = UILabel()
-        label.text = "[도로명] QA로 00 오영빌딩"
         label.font = UIFont(name: FontModel.customLight, size: 12.5)
         label.textColor = .gray
         label.numberOfLines = 2
         return label
     }()
     
-    private let removeButton: UIButton = {
+    let removeButton: UIButton = {
     let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .lightGray
+        button.isHidden = true
         return button
     }()
     
@@ -64,6 +63,7 @@ class NearestListCustomCell: UITableViewCell {
     }
     private func setRemoveButton() {
         
+        removeButton.addTarget(self, action: #selector(removeToggle(_:)), for: .touchUpInside)
         self.addSubview(removeButton)
         
         removeButton.snp.makeConstraints {
@@ -90,7 +90,16 @@ class NearestListCustomCell: UITableViewCell {
             $0.leading.trailing.equalTo(addressLabel)
             $0.bottom.equalToSuperview().inset(CollectionDesign.padding)
         }
+    }
+    
+    func setAddress(addressName: String, roadAddress: String) {
         
+        addressLabel.text = addressName
+        addressRoadLabel.text = roadAddress
+    }
+    @objc func removeToggle(_ sender: UIButton) {
+        
+        UserDefaults.standard.removeObject(forKey: MapVC.listString)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

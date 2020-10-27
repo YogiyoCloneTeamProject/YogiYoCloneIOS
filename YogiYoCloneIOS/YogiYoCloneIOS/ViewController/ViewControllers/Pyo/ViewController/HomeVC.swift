@@ -157,17 +157,6 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
             var data: RecommendData?
             database.append(data)
         }
-//        var firstCD: RecommendData?
-//        var twiceCD: RecommendData?
-//        var thirdCD: RecommendData?
-//        var fourthCD: RecommendData?
-//        var fifthCD: RecommendData?
-//        var sixthCD: RecommendData?
-//        var seventhCD: RecommendData?
-//        var eighthCD: RecommendData?
-//        var ninthCD: RecommendData?
-
-//        var database = [firstCD, twiceCD, thirdCD, fourthCD, fifthCD, sixthCD, seventhCD, eighthCD, ninthCD]
         
         return database
     }()
@@ -201,7 +190,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = .white
         tabBarController?.tabBar.isHidden = false
-            }
+    }
     
     // MARK: Set UI
     private func setUI() {

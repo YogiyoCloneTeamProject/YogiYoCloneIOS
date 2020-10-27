@@ -26,6 +26,14 @@ extension MapVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
+        let keyword = textField.text ?? ""
+        
+        getAddress(keyword: keyword) { (data) in
+            
+            self.addressTableView.reloadData()
+        }
+        
         return true
     }
     
