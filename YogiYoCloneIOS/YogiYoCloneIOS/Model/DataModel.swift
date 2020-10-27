@@ -48,6 +48,43 @@ struct RecommendData: Codable {
 }
 
 
+struct RoadDocument: Codable {
+    
+    let documents : [Documents]
+    
+    struct Documents: Codable {
+        
+        let addressName: String
+        let roadAddress: RoadAddress
+        
+        enum CodingKeys: String, CodingKey {
+            case addressName = "address_name"
+            case roadAddress = "road_address"
+        }
+        
+        struct RoadAddress: Codable {
+            
+            let region1: String
+            let region2: String
+            let region3: String
+            
+            let lon: String
+            let lat: String
+            
+            
+            enum CodingKeys: String, CodingKey {
+                case region1 = "region_1depth_name"
+                case region2 = "region_2depth_name"
+                case region3 = "region_3depth_name"
+                
+                case lon = "x"
+                case lat = "y"
+            }
+        }
+    }
+}
+
+
 struct LikeData: Codable {
     
     let next: String?
@@ -423,32 +460,34 @@ struct OrderListData : Codable {
 
 
 struct UrlBase {
-        
-        
-        static let ip = "http://52.79.251.125/"
-        
-        static let recomend = "restaurants/home_view_"
-        static let bookmarks = "bookmarks"
-        
-        static let listAll = "restaurants"
-        static let category = "categories"
-        static let instance = "restaurants/"
-        
-        static let menu = "menu/"
-        
-        static let payment = "payment_methods"
-        
-        static let ordering = "ordering"
-        
-        
-        static let restaurantList = "http://52.79.251.125/restaurants"
-        static let restaurantInstance = "http://52.79.251.125/restaurants/2"
-        
-        static let menuInstance = "http://52.79.251.125/menu/2"
-        static let order = "http://52.79.251.125/orders"
-        
-        
-        
-        static var lat = "37.545258"
-        static var lon = "127.057174"
-    }
+    
+    static let ip = "http://52.79.251.125/"
+    
+    static let recomend = "restaurants/home_view_"
+    static let bookmarks = "bookmarks"
+    
+    static let listAll = "restaurants"
+    static let category = "categories"
+    static let instance = "restaurants/"
+    
+    static let menu = "menu/"
+    
+    static let payment = "payment_methods"
+    
+    static let ordering = "ordering"
+    
+    
+    static let restaurantList = "http://52.79.251.125/restaurants"
+    static let restaurantInstance = "http://52.79.251.125/restaurants/2"
+    
+    static let menuInstance = "http://52.79.251.125/menu/2"
+    static let order = "http://52.79.251.125/orders"
+    
+    
+    static var lat = "37.545258"
+    static var lon = "127.057174"
+    
+    static let addressKa = "https://dapi.kakao.com/v2/local/search/address.json"
+    static let Authorization = "KakaoAK 5673993289e3d720b42b0e1bf826f847"
+    
+}

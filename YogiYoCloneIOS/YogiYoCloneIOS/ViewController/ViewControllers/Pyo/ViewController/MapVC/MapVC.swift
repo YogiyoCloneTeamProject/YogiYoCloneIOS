@@ -8,8 +8,11 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 class MapVC: UIViewController {
+    
+    static let listString = "List"
     
     let topView: TopSearchView = {
         let view = TopSearchView()
@@ -27,12 +30,24 @@ class MapVC: UIViewController {
         return tableView
     }()
     
+    var addressData: RoadDocument?
+    var addressList: [Address] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let savedList = UserDefaults.standard.object(forKey: MapVC.listString) as? Data {
+            let decoder = JSONDecoder()
+            if let loadedList = try? decoder.decode([Address].self, from: savedList) {
+                
+                addressList = loadedList
+            }
+        }
         
         setUI()
         setLayout()
     }
+    
     private func setUI() {
         
         view.backgroundColor = ColorPiker.customGray
@@ -69,9 +84,11 @@ class MapVC: UIViewController {
     }
     @objc private func cancleToggle(_ sender: UIButton) {
         
-        topView.searchField.resignFirstResponder()
+        topView.searchField.text = nil
         topView.searchField.isSelected = false
+        topView.searchField.resignFirstResponder()
         
+        addressData = nil
         addressTableView.reloadData()
         
         UIView.animate(withDuration: 0.2) {
@@ -82,7 +99,7 @@ class MapVC: UIViewController {
         }
     }
     @objc private func pushNowVC(_ sender: UIButton) {
-        let nowVC = NowLocationVC()
-        navigationController?.pushViewController(nowVC, animated: true)
+        let googleVC = GoogleMapVC()
+        navigationController?.pushViewController(googleVC, animated: true)
     }
 }
