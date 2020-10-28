@@ -20,11 +20,11 @@ extension MapVC: UITableViewDelegate {
             
             let address = addressData?.documents[indexPath.row - 1].addressName ?? ""
             let load = addressData?.documents[indexPath.row - 1].roadAddress
-            let loadStr = "[도로명] \(load?.region1 ?? "") \(load?.region2 ?? "") \(load?.region3 ?? "")"
+            let loadName = "[도로명] \(load?.region1 ?? "") \(load?.region2 ?? "") \(load?.region3 ?? "")"
             
             guard addressList.filter({ $0.address == address }).count == 0 else { return pushGoogle() }
             
-            let addressValue: Address = Address(address: address, load: loadStr)
+            let addressValue: Address = Address(address: address, load: loadName)
             
             addressList.insert(addressValue, at: 0)
             setList()

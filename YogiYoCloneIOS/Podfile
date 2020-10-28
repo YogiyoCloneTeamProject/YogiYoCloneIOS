@@ -16,4 +16,6 @@ target 'YogiYoCloneIOS' do
     pod 'Firebase/Analytics'
     pod 'naveridlogin-sdk-ios'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'GoogleMaps'
+
 end
