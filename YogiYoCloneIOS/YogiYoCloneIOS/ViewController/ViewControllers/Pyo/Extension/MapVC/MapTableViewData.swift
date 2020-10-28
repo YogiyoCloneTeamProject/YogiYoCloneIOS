@@ -93,7 +93,7 @@ extension MapVC: UITableViewDataSource {
                 cell.setValue(text: "검색결과가 없습니다.")
             } else {
                 
-                cell.setValue(text: "'\(topView.searchField.text ?? "")'에 대한 검색 결과입니다.")
+                cell.setValue(text: "'\(topView.searchField.text ?? " ")'에 대한 검색 결과입니다.")
             }
             
             return cell

@@ -25,6 +25,7 @@ class TopSearchView: UIView {
         textField.leftView = paddingView
         textField.leftView?.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
         
+        textField.clearButtonMode = .always
         textField.isSelected = false
         textField.tintColor = .systemRed
         textField.layer.borderWidth = 0.25

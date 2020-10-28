@@ -1246,6 +1246,7 @@
 				D3E5F78124EAAFC6001BB6B2 /* Frameworks */,
 				D3E5F78224EAAFC6001BB6B2 /* Resources */,
 				BFB8B7C77B2E9A7D5E59663A /* [CP] Embed Pods Frameworks */,
+				A195952F2D3F39F012EBF1C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1303,6 +1304,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A195952F2D3F39F012EBF1C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YogiYoCloneIOS/Pods-YogiYoCloneIOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BBF023B12A0EA314382A265C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
