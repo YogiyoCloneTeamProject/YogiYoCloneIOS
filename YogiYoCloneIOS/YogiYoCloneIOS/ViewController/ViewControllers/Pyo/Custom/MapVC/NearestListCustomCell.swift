@@ -52,19 +52,18 @@ class NearestListCustomCell: UITableViewCell {
     }
     private func setImageView() {
         
-        self.addSubview(locationImageView)
+        contentView.addSubview(locationImageView)
         
         locationImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(CollectionDesign.padding)
-            $0.width.equalTo(self.snp.width).multipliedBy(0.04)
+            $0.width.equalTo(contentView.snp.width).multipliedBy(0.04)
             $0.height.equalTo(locationImageView.snp.width)
         }
     }
     private func setRemoveButton() {
         
-        removeButton.addTarget(self, action: #selector(removeToggle(_:)), for: .touchUpInside)
-        self.addSubview(removeButton)
+        contentView.addSubview(removeButton)
         
         removeButton.snp.makeConstraints {
             $0.top.width.height.equalTo(locationImageView)
@@ -73,17 +72,17 @@ class NearestListCustomCell: UITableViewCell {
     }
     private func setAddressLabel() {
         
-        self.addSubview(addressLabel)
+        contentView.addSubview(addressLabel)
         
         addressLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(locationImageView.snp.trailing).offset(CollectionDesign.textPadding)
-            $0.trailing.equalTo(self.snp.trailing).inset(self.frame.width / 7)
+            $0.trailing.equalTo(contentView.snp.trailing).inset(contentView.frame.width / 7)
         }
     }
     private func setaddressRoadLabel() {
         
-        self.addSubview(addressRoadLabel)
+        contentView.addSubview(addressRoadLabel)
         
         addressRoadLabel.snp.makeConstraints {
             $0.top.equalTo(addressLabel.snp.bottom).offset(CollectionDesign.textPadding)
@@ -97,10 +96,7 @@ class NearestListCustomCell: UITableViewCell {
         addressLabel.text = addressName
         addressRoadLabel.text = roadAddress
     }
-    @objc func removeToggle(_ sender: UIButton) {
-        
-        UserDefaults.standard.removeObject(forKey: MapVC.listString)
-    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

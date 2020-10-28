@@ -1121,10 +1121,10 @@
 			isa = PBXGroup;
 			children = (
 				D3B86E1324F7EEF200044A27 /* YogiYoCloneIOS.entitlements */,
+				D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */,
 				D32F4F2F24F12C4500375DB2 /* Utills */,
 				D33768CA24ECC9FA00E0C27A /* Model */,
 				D33768BD24ECC54E00E0C27A /* ViewController */,
-				D3E5F78724EAAFC6001BB6B2 /* AppDelegate.swift */,
 				D3E5F79024EAAFC7001BB6B2 /* Assets.xcassets */,
 				D3B86E1424F7F0D300044A27 /* GoogleService-Info.plist */,
 				D3E5F79224EAAFC7001BB6B2 /* LaunchScreen.storyboard */,
