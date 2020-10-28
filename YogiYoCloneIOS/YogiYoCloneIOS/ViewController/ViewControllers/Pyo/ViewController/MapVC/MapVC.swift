@@ -36,13 +36,7 @@ class MapVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let savedList = UserDefaults.standard.object(forKey: MapVC.listString) as? Data {
-            let decoder = JSONDecoder()
-            if let loadedList = try? decoder.decode([Address].self, from: savedList) {
-                
-                addressList = loadedList
-            }
-        }
+        loadList()
         
         setUI()
         setLayout()
@@ -62,7 +56,7 @@ class MapVC: UIViewController {
         
         topView.searchField.delegate = self
         topView.cancleButton.addTarget(self, action: #selector(cancleToggle(_:)), for: .touchUpInside)
-        topView.nowButton.addTarget(self, action: #selector(pushNowVC(_:)), for: .touchUpInside)
+        topView.nowButton.addTarget(self, action: #selector(nowButtonToggle(_:)), for: .touchUpInside)
         view.addSubview(topView)
         
         view.addSubview(addressTableView)
@@ -98,7 +92,34 @@ class MapVC: UIViewController {
             self.topView.layoutIfNeeded()
         }
     }
-    @objc private func pushNowVC(_ sender: UIButton) {
+    @objc private func nowButtonToggle(_ sender: UIButton) {
+        
+        pushGoogle()
+    }
+    @objc func removeToggle(_ sender: UIButton) {
+        
+        addressList.remove(at: sender.tag)
+        setList()
+        
+        addressTableView.reloadData()
+    }
+    func setList() {
+        if let encoded = try? JSONEncoder().encode(addressList) {
+            
+            UserDefaults.standard.set(encoded, forKey: MapVC.listString)
+        }
+    }
+    func loadList() {
+        
+        if let savedList = UserDefaults.standard.object(forKey: MapVC.listString) as? Data {
+            if let loadedList = try? JSONDecoder().decode([Address].self, from: savedList) {
+                
+                addressList = loadedList
+            }
+        }
+    }
+    func pushGoogle() {
+        
         let googleVC = GoogleMapVC()
         navigationController?.pushViewController(googleVC, animated: true)
     }

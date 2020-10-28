@@ -69,7 +69,11 @@ extension MapVC: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NearestListCustomCell.identifier) as? NearestListCustomCell else { fatalError() }
             
+            cell.selectionStyle = .none
+            
             cell.removeButton.isHidden = false
+            cell.removeButton.tag = indexPath.row - 1
+            cell.removeButton.addTarget(self, action: #selector(removeToggle(_:)), for: .touchUpInside)
             cell.setAddress(addressName: addressList[indexPath.row - 1].address,
                             roadAddress: addressList[indexPath.row - 1].load)
             return cell
