@@ -14,16 +14,7 @@ class HistoryDetailVC: UIViewController {
 
     // leading, trailing padding
     private let padding = 20
-    let storeView = StoreButtonView()
-    
-    private let orderStatus : UILabel = {
-        let label = UILabel()
-        label.text = "주문취소"
-        label.font = UIFont(name: FontModel.customSemibold, size: 20)
-        label.textColor = .darkGray
-        return label
-    }()
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -37,36 +28,130 @@ class HistoryDetailVC: UIViewController {
         let scrollView = drawScroll(parentView: wrapView, prev: closeButton).getContentsView()
         let storeView = drawStore(parentView: scrollView)
         let reOrderButton = drawReOrderButton(parentView: scrollView, prev: storeView)
-        let cancelSection = drawSection(parentView: scrollView, prev: reOrderButton)
-        let menusSection = drawSection(parentView: scrollView, prev: cancelSection)
+        let orderStatusSection = drawSection(parentView: scrollView, prev: reOrderButton)
+        let orderInfoSection = drawSection(parentView: scrollView, prev: orderStatusSection)
+        let menusSection = drawSection(parentView: scrollView, prev: orderInfoSection)
         let totalAmountSection = drawSection(parentView: scrollView, prev: menusSection, lightTopLine: true)
         let checkoutAmountSection = drawSection(parentView: scrollView, prev: totalAmountSection)
         let payMethodSection = drawSection(parentView: scrollView, prev: checkoutAmountSection)
         
+        let orderStatusContents = drawBigStackLine(parentView: orderStatusSection)
         
+        let orderContents = [
+            ["주문번호", "200829-17-360880"],
+            ["주문시간", "2020-10-06 07:24" ],
+            ["접수대기중", "접수 대기중 입니다."],
+        ]
+        
+        let menuTitleContents = ["（4다리）불닭볶음치킨 X 1", "20,000원"]
+        
+        
+        var prev: UIStackView?
+        for content in orderContents {
+            prev = drawStackLine(content: content, parentView: orderInfoSection, prev: prev)
+        }
+        
+        var prev2: UIStackView?
+        
+//        let menuDetailListContents = drawStackLine(content: ["- 음료 변경 선택: 펩시콜라", "1,000원"], parentView: menusSection, prev: prev2)
+        
+        let menulistLine = drawMediumStackLine(content: menuTitleContents, parentView: menusSection)
+        
+        let totalAmountLine = drawCenterStackLine(content: ["상품합계","20,000원"], parentView: totalAmountSection)
+        
+        let payMethodLine = drawCenterStackLine(content: ["결제방식","현금"], parentView: payMethodSection)
+        
+        let paymentStackLine = drawPaymentStackLine(content: ["결제금액","20,000원"], parentView: checkoutAmountSection)
+    
+
     }
     
     // Section
     func drawSection(parentView: UIView, prev: UIView, lightTopLine: Bool = false) -> UIView {
         let sectionView = SectionView()
         if lightTopLine {
-            sectionView.lightLine()
+            sectionView.setTopLine()
         }
         
         parentView.addSubview(sectionView)
         sectionView.snp.makeConstraints { (make) in
-            make.height.equalTo(100)
+            make.height.equalTo(50)
         }
+    
         self.commonConstraints(target: sectionView, to: parentView, prev: prev)
 
         return sectionView
     }
     
-    // stack 한줄 한줄 보여주는 부분
-    func drawStackLine() {
-        let stack = UIStackView(arrangedSubviews: [orderStatus])
+    // stackSmallLine 보이는 부분
+    func drawStackLine(content: [String], parentView: UIView, prev: UIView?) -> UIStackView {
+        let stack = StackSmall()
+        stack.contents(label: content[0], value: content[1])
+        parentView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            if (prev != nil) {
+                make.top.equalTo(prev!.snp.bottom).inset(0)
+            } else {
+                make.top.equalTo(parentView).inset(10)
+            }
+        }
+        fillLayoutConstraints(target: stack, to: parentView)
+        return stack
     }
     
+    // stackBigLine 보이는 부분
+    func drawBigStackLine(parentView: UIView) -> UIStackView {
+        let stack = StackBig()
+        stack.contents(label: "접수대기", image: UIImage(named: "OrderImage")!)
+        parentView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            make.top.equalTo(parentView).inset(10)
+        }
+        
+        fillLayoutConstraints(target: stack, to: parentView)
+        return stack
+    }
+    
+    // StackMediumLine 보이는 부분
+    func drawMediumStackLine(content: [String],parentView: UIView) -> UIStackView {
+        let stack = StackMedium()
+        stack.contents(label: content[0], value: content[1])
+        parentView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            make.centerY.equalTo(parentView).offset(10)
+        }
+        
+        fillLayoutConstraints(target: stack, to: parentView)
+        return stack
+    }
+    
+    func drawPaymentStackLine(content: [String],parentView: UIView) -> UIStackView {
+        let stack = PaymentLine()
+        stack.contents(label: content[0], value: content[1])
+        parentView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            make.centerY.equalTo(parentView).offset(10)
+        }
+        
+        fillLayoutConstraints(target: stack, to: parentView)
+        return stack
+    }
+    
+    func drawCenterStackLine(content: [String],parentView: UIView) -> UIStackView {
+        let stack = CenterLine()
+        stack.contents(label: content[0], value: content[1])
+        parentView.addSubview(stack)
+        stack.snp.makeConstraints { (make) in
+            make.centerY.equalTo(parentView).offset(10)
+        }
+        
+        fillLayoutConstraints(target: stack, to: parentView)
+        return stack
+    }
+
+    
+    
+        
     // wrapView 그리기
     func drawWrap(parentView: UIView) -> WrapView {
         let wrapView = WrapView()
@@ -86,9 +171,9 @@ class HistoryDetailVC: UIViewController {
         let closeButton = CloseButton()
         parentView.addSubview(closeButton)
         closeButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(20)
             make.leading.equalTo(parentView).offset(padding)
-            make.top.equalTo(parentView).offset(20)
+            make.top.equalTo(parentView).offset(5)
         }
         return closeButton
     }
@@ -110,6 +195,7 @@ class HistoryDetailVC: UIViewController {
     
     // 상점이름 및 링크
     func drawStore(parentView: UIView) -> StoreButtonView {
+        let storeView = StoreButtonView()
         parentView.addSubview(storeView)
         storeView.snp.makeConstraints { (make) in
             make.top.equalTo(parentView).offset(20)
@@ -123,7 +209,7 @@ class HistoryDetailVC: UIViewController {
         let reOrderButton = ReOrderButton()
         parentView.addSubview(reOrderButton)
         reOrderButton.snp.makeConstraints { (make) in
-            make.top.equalTo(storeView.snp.bottom).multipliedBy(0.8)
+            make.top.equalTo(prev.snp.bottom).multipliedBy(0.8)
         }
         loactedTopContsraints(target: reOrderButton, to: prev)
         return reOrderButton
