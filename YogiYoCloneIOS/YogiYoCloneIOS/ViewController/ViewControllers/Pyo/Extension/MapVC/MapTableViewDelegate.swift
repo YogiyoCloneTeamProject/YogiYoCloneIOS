@@ -4,9 +4,10 @@
 //
 //  Created by 표건욱 on 2020/10/05.
 //  Copyright © 2020 김동현. All rights reserved.
-// 성수이로
+//
 
 import UIKit
+import GooglePlaces
 
 extension MapVC: UITableViewDelegate {
     
@@ -15,22 +16,36 @@ extension MapVC: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? NearestListCustomCell else { return }
         if !cell.removeButton.isHidden {
             
-            print("return")
+            if let mainVC = presentingViewController as? MainTabVC {
+                if let homeNaviVC = mainVC.children[0] as? UINavigationController {
+                    if let homeVC = homeNaviVC.children[0] as? HomeVC {
+                        
+                        homeVC.titleButton.setTitle("\(addressList[indexPath.row - 1].load.dropFirst(6)) ▼", for: .normal)
+                    }
+                }
+            }
+                    
+            navigationController?.dismiss(animated: true)
         } else {
-            
+            let lat = CLLocationDegrees(addressData?.documents[indexPath.row - 1].roadAddress.lat ?? "0") ?? 0
+            let lon = CLLocationDegrees(addressData?.documents[indexPath.row - 1].roadAddress.lon ?? "0") ?? 0
+
             let address = addressData?.documents[indexPath.row - 1].addressName ?? ""
-            let load = addressData?.documents[indexPath.row - 1].roadAddress
-            let loadName = "[도로명] \(load?.region1 ?? "") \(load?.region2 ?? "") \(load?.region3 ?? "")"
+            let road = addressData?.documents[indexPath.row - 1].roadAddress
+            let roadName = "[도로명] \(road?.region1 ?? "") \(road?.region2 ?? "") \(road?.region3 ?? "")"
             
-            guard addressList.filter({ $0.address == address }).count == 0 else { return pushGoogle() }
+//            guard addressList.filter({ $0.address == address }).count == 0 else {
+//
+//                return pushGoogle(address: address, road: roadName, lat: lat, lon: lon)
+//            }
+//
+//            let addressValue: Address = Address(address: address, load: roadName)
+//
+//            addressList.insert(addressValue, at: 0)
+//            setList()
             
-            let addressValue: Address = Address(address: address, load: loadName)
             
-            addressList.insert(addressValue, at: 0)
-            setList()
-            
-            
-            pushGoogle()
+            pushGoogle(address: address, road: roadName, lat: lat, lon: lon)
         }
     }
 }
