@@ -28,7 +28,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    private let titleButton: UIButton = {
+    let titleButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.black, for: .normal)
         button.setTitle("성수동2가 277-17 ▼", for: .normal)
@@ -179,17 +179,19 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         return formatter
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setUI()
-        setLayout()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = .white
         tabBarController?.tabBar.isHidden = false
+        
+        navigationItem.titleView = titleStack
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUI()
+        setLayout()
     }
     
     // MARK: Set UI
@@ -208,7 +210,7 @@ class HomeVC: UIViewController, UIScrollViewDelegate {
         titleButton.addTarget(self, action: #selector(mapPresent(_:)), for: .touchUpInside)
         titleStack.addArrangedSubview(titleButton)
         
-        navigationItem.titleView = titleStack
+//        navigationItem.titleView = titleStack
         
         view.addSubview(motherScrollView)
         

@@ -9,8 +9,9 @@
 import UIKit
 import SnapKit
 import Alamofire
+import GooglePlaces
 
-class MapVC: UIViewController {
+class MapVC: UIViewController, CLLocationManagerDelegate {
     
     static let listString = "List"
     
@@ -93,8 +94,17 @@ class MapVC: UIViewController {
         }
     }
     @objc private func nowButtonToggle(_ sender: UIButton) {
+        let locationManager = CLLocationManager()
         
-        pushGoogle()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        
+        let coor = locationManager.location?.coordinate
+        let address = reverseGeocode(location: locationManager.location ?? CLLocation())
+        
+        pushGoogle(address: address, road: nil, lat: coor?.latitude, lon: coor?.longitude)
     }
     @objc func removeToggle(_ sender: UIButton) {
         
@@ -118,9 +128,39 @@ class MapVC: UIViewController {
             }
         }
     }
-    func pushGoogle() {
+    func reverseGeocode(location: CLLocation) -> String {
+        let geocoder = CLGeocoder()
+        var addName: String?
+        
+        geocoder.reverseGeocodeLocation(location) { placeMark, error in
+            print("\n---------- [ 위경도 -> 주소 ] ----------")
+            if error != nil {
+                return print(error!.localizedDescription)
+            }
+            
+            // 국가별 주소체계에 따라 어떤 속성 값을 가질지 다름
+            guard let address = placeMark?.first,
+                  let country = address.country,
+                  let administrativeArea = address.administrativeArea,
+                  let locality = address.locality,
+                  let name = address.name
+            else { return }
+            
+            addName = "\(country) \(administrativeArea) \(locality) \(name)"
+        }
+        return addName ?? ""
+    }
+    func pushGoogle(address: String, road: String?, lat: CLLocationDegrees?, lon: CLLocationDegrees?) {
         
         let googleVC = GoogleMapVC()
+        
+        googleVC.lat = lat
+        googleVC.lon = lon
+        googleVC.title = title
+        
+        googleVC.bottomView.addressLabel.text = address
+        googleVC.bottomView.roadLabel.text = road
+        
         navigationController?.pushViewController(googleVC, animated: true)
     }
 }
