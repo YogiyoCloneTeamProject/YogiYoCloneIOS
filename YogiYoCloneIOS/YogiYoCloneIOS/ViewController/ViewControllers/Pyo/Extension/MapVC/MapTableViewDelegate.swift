@@ -34,16 +34,6 @@ extension MapVC: UITableViewDelegate {
             let road = addressData?.documents[indexPath.row - 1].roadAddress
             let roadName = "[도로명] \(road?.region1 ?? "") \(road?.region2 ?? "") \(road?.region3 ?? "")"
             
-//            guard addressList.filter({ $0.address == address }).count == 0 else {
-//
-//                return pushGoogle(address: address, road: roadName, lat: lat, lon: lon)
-//            }
-//
-//            let addressValue: Address = Address(address: address, load: roadName)
-//
-//            addressList.insert(addressValue, at: 0)
-//            setList()
-            
             
             pushGoogle(address: address, road: roadName, lat: lat, lon: lon)
         }

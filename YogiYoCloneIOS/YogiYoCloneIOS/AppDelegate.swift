@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(googleKey)
         GMSPlacesClient.provideAPIKey(googleKey)
         
+        sleep(3)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainTabVC()
-//        window?.rootViewController = MapVC()
-
         window?.makeKeyAndVisible()
         return true
     }
