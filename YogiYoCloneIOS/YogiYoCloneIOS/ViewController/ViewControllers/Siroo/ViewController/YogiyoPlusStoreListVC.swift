@@ -56,7 +56,7 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, Re
     
     private let naviTitle : UILabel = {
         let label = UILabel()
-        label.text = "요기요 익스프레스"
+        label.text = "요기요 플러스"
         label.font =  UIFont(name: FontModel.customLight, size: 18)
         return label
     }()

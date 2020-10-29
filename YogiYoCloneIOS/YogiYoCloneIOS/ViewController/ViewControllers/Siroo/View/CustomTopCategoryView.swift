@@ -11,7 +11,7 @@ import UIKit
 protocol CustomTopCategoryViewDelegate : class {
     func categoryButtonScrollAction(to index: Int)
 }
-// drag >
+
 class CustomTopCategoryView: UIView , StoreListVCDelegate, HistoryVCDelegate {
     func historyVCScrollIndex(to index: Int) {
         print("HistoryVCScroll : \(index)")
@@ -28,8 +28,6 @@ class CustomTopCategoryView: UIView , StoreListVCDelegate, HistoryVCDelegate {
     private var buttons : [UIButton] = []
     private var selectorView : UIView!
  
-
-    
     var textColor: UIColor = ColorPiker.customDarkGray
     var selectorViewColor: UIColor = ColorPiker.customMainRed
     var selectorTextColor : UIColor = ColorPiker.customMainRed

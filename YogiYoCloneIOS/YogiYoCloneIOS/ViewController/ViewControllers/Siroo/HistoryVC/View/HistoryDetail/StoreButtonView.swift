@@ -11,7 +11,7 @@ import UIKit
 class StoreButtonView: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setTitle("바비박스 (POS MENU FINAL) >", for: .normal)
+        self.setTitle("치킨더홈-광진화양점 >", for: .normal)
         self.setTitleColor(.black, for: .normal)
         self.titleLabel?.font = UIFont(name: FontModel.customSemibold, size: 20)
     }

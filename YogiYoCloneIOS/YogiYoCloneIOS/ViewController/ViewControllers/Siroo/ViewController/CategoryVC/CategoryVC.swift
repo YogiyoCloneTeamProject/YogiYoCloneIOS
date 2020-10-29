@@ -55,9 +55,7 @@ class CategoryVC: UIViewController {
         view.frame = CGRect(x: xPos, y: 0, width: 0, height: 0)
         view.sizeToFit()
         view.addSubview(tableView)
-        
-        
-        print("뷰의 사이즈는 11:\(view.frame.height)")
+    
         return view
     }
 }
@@ -113,7 +111,8 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         categoryDelegate?.categoryDelegate(id: self.restaurants[indexPath.row].id)
     }
-    
+
+// 스크롤을 움직였을때 위치 값 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
       let height: CGFloat = scrollView.frame.size.height
       let contentYOffset: CGFloat = scrollView.contentOffset.y
@@ -122,7 +121,6 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
                 
       if distanceFromBottom < height {
         categoryDelegate?.scrolltableviewreload()
-        print("스크롤")
       }
     }
  

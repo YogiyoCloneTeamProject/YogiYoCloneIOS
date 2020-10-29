@@ -259,13 +259,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
 extension StoreListVC : StoreListFilterViewDelegate {
     // 필터 정렬 이벤트 리스너
     func presentStorefilterView(selectedOrder: Int, selectedPayment: Int) {
-        print("필터 정렬이 적용되었습니다 category: \(categoryIndex)")
-        print("필터값 적용되었습니다 filter: \(selectedPayment)")
-        print("정렬값 적용되었습니다 order: \(selectedOrder)")
         fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true)
-        print("필터정렬 이벤트 리스너 : \(fetchModel.getRestaurnatData(categoryIndex, selectedOrder: selectedOrder, selectedPayment: selectedPayment, isFirst: true))")
-        
-
     }
 
     
