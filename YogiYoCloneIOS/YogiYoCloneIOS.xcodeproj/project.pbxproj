@@ -33,6 +33,8 @@
 		6E88B18C2515117200A64DDA /* BottomStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88B18B2515117200A64DDA /* BottomStack.swift */; };
 		6E8CFF642547F4B90002D202 /* GoogleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8CFF632547F4B90002D202 /* GoogleMapVC.swift */; };
 		6E8CFF682547F8580002D202 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8CFF672547F8580002D202 /* AddressModel.swift */; };
+		6E8CFFBA254ACACA0002D202 /* GoogleBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8CFFB9254ACACA0002D202 /* GoogleBottomView.swift */; };
+		6E8CFFBE254B431D0002D202 /* GoogleMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8CFFBD254B431D0002D202 /* GoogleMapDelegate.swift */; };
 		6E91215924FA50E7003D86F0 /* RestaurantPlusCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91215824FA50E7003D86F0 /* RestaurantPlusCustomCell.swift */; };
 		6E91215B24FAC301003D86F0 /* RestaurantNewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91215A24FAC301003D86F0 /* RestaurantNewCustomCell.swift */; };
 		6E91216024FD075E003D86F0 /* CollectionViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91215F24FD075E003D86F0 /* CollectionViewData.swift */; };
@@ -213,6 +215,8 @@
 		6E88B18B2515117200A64DDA /* BottomStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStack.swift; sourceTree = "<group>"; };
 		6E8CFF632547F4B90002D202 /* GoogleMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapVC.swift; sourceTree = "<group>"; };
 		6E8CFF672547F8580002D202 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		6E8CFFB9254ACACA0002D202 /* GoogleBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBottomView.swift; sourceTree = "<group>"; };
+		6E8CFFBD254B431D0002D202 /* GoogleMapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapDelegate.swift; sourceTree = "<group>"; };
 		6E91215824FA50E7003D86F0 /* RestaurantPlusCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPlusCustomCell.swift; sourceTree = "<group>"; };
 		6E91215A24FAC301003D86F0 /* RestaurantNewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantNewCustomCell.swift; sourceTree = "<group>"; };
 		6E91215F24FD075E003D86F0 /* CollectionViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewData.swift; sourceTree = "<group>"; };
@@ -537,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				6EDE1978252AC15F007415F4 /* TopSearchView.swift */,
+				6E8CFFB9254ACACA0002D202 /* GoogleBottomView.swift */,
 			);
 			path = MapVC;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				6E44EA1A253D929F009616A7 /* MapTableViewData.swift */,
 				6EDE198E252AE531007415F4 /* MapTableViewDelegate.swift */,
 				6E5AFD3C253ACF36004A21C5 /* MapTextFieldDelegate.swift */,
+				6E8CFFBD254B431D0002D202 /* GoogleMapDelegate.swift */,
 			);
 			path = MapVC;
 			sourceTree = "<group>";
@@ -1386,6 +1392,7 @@
 				DE9610B12521E3D600F371F4 /* MyListBannerView.swift in Sources */,
 				73A25020252BFB3D009D42EF /* TopView.swift in Sources */,
 				739A42CA24F5F7F300A51BE0 /* ShareView.swift in Sources */,
+				6E8CFFBA254ACACA0002D202 /* GoogleBottomView.swift in Sources */,
 				DE9FDA7425135615004654A6 /* Extension.swift in Sources */,
 				73A7C55C253D6C3200744979 /* UITableViewDataSource.swift in Sources */,
 				DECCE9652549622D0086218C /* PaymentLine.swift in Sources */,
@@ -1400,6 +1407,7 @@
 				D371D17724F62F6800EB1D2A /* ShowContentButton.swift in Sources */,
 				6EC9E8C9251DD61C00922A20 /* TableViewData.swift in Sources */,
 				DECCE95D2547E9DC0086218C /* StackBig.swift in Sources */,
+				6E8CFFBE254B431D0002D202 /* GoogleMapDelegate.swift in Sources */,
 				DE8202F2250B378F008537B1 /* YogiyoPlusStoreListVC.swift in Sources */,
 				D371D16F24F614BF00EB1D2A /* DescriptionLabel.swift in Sources */,
 				D3B0636424F7FE6100FF37BA /* GetCodeButton.swift in Sources */,

@@ -69,6 +69,8 @@ PODS:
   - GoogleMaps/Base (4.0.0)
   - GoogleMaps/Maps (4.0.0):
     - GoogleMaps/Base
+  - GooglePlaces (4.0.0):
+    - GoogleMaps/Base (= 4.0.0)
   - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -141,6 +143,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Messaging
   - GoogleMaps
+  - GooglePlaces
   - KakaoSDK
   - Kingfisher (~> 5.0)
   - naveridlogin-sdk-ios
@@ -163,6 +166,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleMaps
+    - GooglePlaces
     - GoogleUtilities
     - GTMSessionFetcher
     - KakaoSDK
@@ -197,6 +201,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleMaps: b7f7fc569a9b354a3af0d9729dbec40957b7d41e
+  GooglePlaces: ca8d4aba09ba79e0a829cf1dca03a41de6a09016
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   KakaoSDK: 000d22a13a32e25c31d36d42667640b9c21f48be
@@ -216,6 +221,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: b3b2bcc5e0687adb089c51fbb511764a820f7c5c
+PODFILE CHECKSUM: 2941affbaf01e0a0c34343c9bfd7adeb7dd3014c
 
 COCOAPODS: 1.9.3
