@@ -14,19 +14,18 @@ import Kingfisher
 
 class StoreListCell: UITableViewCell {
     var restaurant: AllListData.Results?
-        
     
     static let identifier = "StoreListCell"
     
     //    MARK: Properties
-    private let storeImage : UIImageView = {
+    let storeImage : UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    private let storeNameLabel : UILabel = {
+    let storeNameLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontModel.customLight, size: 20)
+        label.font = UIFont(name: FontModel.customLight, size: 18)
         return label
     }()
     
@@ -36,49 +35,34 @@ class StoreListCell: UITableViewCell {
         return imageView
     }()
     
-    private let storeRateLabel : UILabel = {
+    let storeRateLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: FontModel.customSemibold, size: 13)
+        label.font = UIFont(name: FontModel.customSemibold, size: 12)
         label.textColor = .black
         return label
     }()
     
-    private let squreView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
-        view.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
-        return view
-    }()
     
-    private let pointLabel : UILabel = {
+    let reviewLabel : UILabel = {
         let label = UILabel()
-        label.text = "・"
-        label.font = UIFont(name: FontModel.customSemibold, size: 10)
-        return label
-    }()
-    
-    private let reviewLabel : UILabel = {
-        let label = UILabel()
-        label.font = FontModel.toSize.customSmallFont
-        label.textColor = .systemGray
-        
-        return label
-    }()
-    
-    private let bestMenuLabel : UILabel = {
-        let label = UILabel()
-        label.font = FontModel.toSize.customSmallFont
+        label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .systemGray
         return label
     }()
     
-    private let estimatedTime : UILabel = {
+    let bestMenuLabel : UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: FontModel.customLight, size: 12)
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    let estimatedTime : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = FontModel.toSize.customSmallFont
-        label.textColor = .black
-        
+        label.font = UIFont(name: FontModel.customLight, size: 12)
+        label.textColor = .darkGray
         return label
     }()
     
@@ -90,11 +74,10 @@ class StoreListCell: UITableViewCell {
         return button
     }()
     
-    private let deliveryDiscountLabel : UILabel = {
+    let deliveryDiscountLabel : UILabel = {
         let label = UILabel()
-        label.font = FontModel.toSize.customSmallFont
+        label.font = UIFont(name: FontModel.customLight, size: 12)
         label.textColor = .red
-   
         return label
     }()
     
@@ -110,19 +93,24 @@ class StoreListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
+        setUIConstraints()
         print("deliveryDiscountLabel :\(String(describing: restaurant?.deliveryDiscount))")
-
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-//    MARK: SetUIConstraints
+    public func setCell() {
+        setUIConstraints()
+    }
+    
+    //    MARK: SetUIConstraints
     
     private func setUIConstraints () {
-        [storeImage,storeNameLabel,bestMenuLabel,estimatedTime,starImage,storeRateLabel,reviewLabel,pointLabel,deliveryDiscountLabel,cescoMark].forEach({
+        
+        [storeImage,cescoMark,estimatedTime,storeNameLabel,starImage,storeRateLabel,deliveryDiscountLabel,reviewLabel,bestMenuLabel].forEach({
             contentView.addSubview($0)
         })
         
@@ -135,14 +123,21 @@ class StoreListCell: UITableViewCell {
         cescoMark.snp.makeConstraints { (make) in
             make.top.equalTo(storeImage.snp.top)
             make.trailing.equalToSuperview().inset(20)
+            make.leading.equalTo(storeNameLabel.snp.trailing)
             make.width.equalTo(contentView.snp.width).multipliedBy(0.1)
             make.height.equalTo(storeImage.snp.height).multipliedBy(0.35)
+        }
+        
+        estimatedTime.snp.makeConstraints { (make) in
+            make.trailing.equalTo(cescoMark.snp.trailing)
+            make.bottom.equalTo(contentView.snp.bottom).inset(20)
         }
         
         storeNameLabel.snp.makeConstraints { (make) in
             make.top.equalTo(storeImage)
             make.leading.equalTo(storeImage.snp.trailing).offset(20)
             make.trailing.equalTo(cescoMark.snp.leading)
+            make.width.equalTo(80)
         }
         
         
@@ -156,29 +151,18 @@ class StoreListCell: UITableViewCell {
             make.top.equalTo(starImage.snp.top)
             make.leading.equalTo(starImage.snp.trailing).offset(3)
         }
-
+        
         
         reviewLabel.snp.makeConstraints { (make) in
             make.top.equalTo(storeRateLabel.snp.top)
             make.leading.equalTo(storeRateLabel.snp.trailing)
         }
         
-        print("DEBUG : \(restaurant?.deliveryDiscount), \(restaurant?.name)")
-        storeNameLabel.text = restaurant?.name
-        storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
-        setImage(from: restaurant!.image)
-        reviewLabel.text = " ・ 리뷰 \(String(restaurant!.reviewCount))"
-        deliveryDiscountLabel.text = "배달할인 \(String((restaurant?.deliveryDiscount)!))원"
-        estimatedTime.text = restaurant?.deliveryTime
-        bestMenuLabel.text = restaurant?.representativeMenus.joined()
+        setData()
+        
         deliveryDiscountLabel.snp.makeConstraints { (make) in
             make.top.equalTo(starImage.snp.bottom).offset(1)
             make.leading.equalTo(starImage.snp.leading)
-        }
-
-        estimatedTime.snp.makeConstraints { (make) in
-            make.top.equalTo(deliveryDiscountLabel.snp.bottom).offset(1)
-            make.trailing.equalToSuperview().inset(20)
         }
         
         estimatedTime.snp.makeConstraints { (make) in
@@ -193,26 +177,40 @@ class StoreListCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(20)
             make.width.equalTo(180)
         }
-
+        
         if restaurant?.deliveryDiscount == 0 {
             deliveryDiscountLabel.removeFromSuperview()
         }
-        
     }
-
-    //    MARK:  Store Image Set
+    
+//    MARK: Set Cell Data
+    
+    func setData() {
+        storeNameLabel.text = restaurant?.name
+        storeRateLabel.text = "\(restaurant?.averageRating ?? 0.0)"
+        setImage(from: restaurant?.image ?? "")
+        reviewLabel.text = " ・ 리뷰 \(String(restaurant?.reviewCount ?? 0))"
+        deliveryDiscountLabel.text = "배달할인 \(String(((restaurant?.deliveryDiscount ?? 0)!)) )원"
+        estimatedTime.text = restaurant?.deliveryTime
+        bestMenuLabel.text = restaurant?.representativeMenus.joined()
+    }
+    
+//    MARK:  Set Store Image
+ 
     func setImage(from url: String) {
         guard let imageURL = URL(string: url) else { return }
-        
         storeImage.kf.setImage(with: imageURL)
     }
+    
+//    MARK: Set Value : LikeVC,SearchVC 에서 셀 재사용
+    
     
     func setValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
         
         let discountText = formatter.string(from: discount as NSNumber? ?? 0)
         
         discountText != "0" ? (deliveryDiscountLabel.text = "배달할인 \(discountText ?? "0")원") :
-                              (deliveryDiscountLabel.text = nil)
+            (deliveryDiscountLabel.text = nil)
         
         setImage(from: image ?? "")
         storeNameLabel.text = title
@@ -221,21 +219,5 @@ class StoreListCell: UITableViewCell {
         bestMenuLabel.text = explain
         cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
     }
-  
-  //
-  func searchValue(image: String?, title: String?, starPoint: Double?, review: Int?, discount: Int?, explain: String?) {
-      
-      let discountText = formatter.string(from: discount as NSNumber? ?? 0)
-      
-      discountText != "0" ? (deliveryDiscountLabel.text = "배달할인 \(discountText ?? "0")원") :
-                            (deliveryDiscountLabel.text = nil)
-      
-      setImage(from: image ?? "")
-      storeNameLabel.text = title
-      storeRateLabel.text = "\(starPoint ?? 0)"
-      reviewLabel.text = "리뷰 \(review ?? 0)"
-      bestMenuLabel.text = explain
-      cescoMark.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
-  }
-  
+    
 }

@@ -41,11 +41,9 @@ class CategoryVC: UIViewController {
     func configureTableView(index: Int) -> UIView {
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
-        
         tableView.register(StoreListCell.self, forCellReuseIdentifier: reuseIdentifier)
-//        tableView.rowHeight = 120
+        // tableView의 rowheight : 컨텐츠뷰의 길이에 따라 높이값 주기
+        tableView.rowHeight = 120
         tableView.allowsSelection = true
         
         
@@ -57,9 +55,7 @@ class CategoryVC: UIViewController {
         view.frame = CGRect(x: xPos, y: 0, width: 0, height: 0)
         view.sizeToFit()
         view.addSubview(tableView)
-        
-        
-        print("뷰의 사이즈는 11:\(view.frame.height)")
+    
         return view
     }
 }
@@ -68,7 +64,7 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "슈퍼레드위크 추천"
+        return "요기요 등록 음식점"
     }
     
     //헤더뷰
@@ -84,14 +80,15 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
         let headerView = UIView()
         let tableView = UITableView()
         headerView.backgroundColor = .white
-        let headerLabel = UILabel(frame: CGRect(x: 18, y: 3, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let headerLabel = UILabel(frame: CGRect(x: 18, y: 10, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let image = UIImage(systemName: "questionmark.circle")
         
         headerLabel.textColor = .black
-        headerLabel.font = UIFont(name: FontModel.customSemibold, size: 18)
+        headerLabel.font = UIFont(name: FontModel.customSemibold, size: 15)
         headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
-        
+
         return headerView
     }
     
@@ -106,15 +103,16 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! StoreListCell
         cell.restaurant = self.restaurants[indexPath.row]
+        cell.setCell()
         return cell
     }
     
 //셀이 선택되었을때 실행할 액션
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("안되나..")
         categoryDelegate?.categoryDelegate(id: self.restaurants[indexPath.row].id)
     }
-    
+
+// 스크롤을 움직였을때 위치 값 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
       let height: CGFloat = scrollView.frame.size.height
       let contentYOffset: CGFloat = scrollView.contentOffset.y
@@ -123,7 +121,6 @@ extension CategoryVC : UITableViewDataSource , UITableViewDelegate{
                 
       if distanceFromBottom < height {
         categoryDelegate?.scrolltableviewreload()
-        print("스크롤")
       }
     }
  

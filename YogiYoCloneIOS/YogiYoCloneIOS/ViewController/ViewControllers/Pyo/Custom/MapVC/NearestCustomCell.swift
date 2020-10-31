@@ -14,7 +14,6 @@ class NearestCustomCell: UITableViewCell {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.text = "최근 주소"
         label.textColor = .gray
         label.font = .systemFont(ofSize: 14)
         return label
@@ -23,6 +22,7 @@ class NearestCustomCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.selectionStyle = .none
         setLabel()
     }
     private func setLabel() {
@@ -32,6 +32,10 @@ class NearestCustomCell: UITableViewCell {
         label.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview().inset(CollectionDesign.padding)
         }
+    }
+    func setValue(text: String) {
+        
+        label.text = text
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -13,7 +13,6 @@ import Kingfisher
 class DetailMenuVC: UIViewController {
   
   public var id : Int = 20
-  
     // 전체적인 주문 정보를 관리하는 매니저(데이터 모델)
     var orderMager = OrderManager.shared
     

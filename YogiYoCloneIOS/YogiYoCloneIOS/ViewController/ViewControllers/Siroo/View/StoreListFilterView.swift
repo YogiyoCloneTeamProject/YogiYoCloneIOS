@@ -77,9 +77,7 @@ class StoreListFilterView: UIView {
     private let filterselectedview : UIView = {
         let view = UIView()
         view.backgroundColor = .red
-        
         return view
-        
     }()
     
     private var orderArrayButtons : [UIButton] = []
@@ -362,14 +360,15 @@ class StoreListFilterView: UIView {
         for i in orderArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+
+            i.imageView?.tintColor = .darkGray
         }
         selectChosenOrder(0)
 
         for i in paymentArrayButtons {
             i.setTitleColor( .darkGray, for: .normal)
             i.setImage(UIImage(systemName: "circle"), for: .normal)
-            i.tintColor = .darkGray
+            i.imageView?.tintColor = .darkGray
         }
         selectChosenPayment(0)
   

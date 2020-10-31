@@ -63,7 +63,7 @@ extension DetailMenuVC : ListOptionDelagate {
       if selectPos == nil {
         //알럿만들기
       }
- 
+
     }
     tableView.reloadData()
   }
