@@ -181,6 +181,11 @@
 		DE9610B8252247A400F371F4 /* HistoryEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9610B7252247A400F371F4 /* HistoryEmptyView.swift */; };
 		DE9FDA7425135615004654A6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9FDA7325135615004654A6 /* Extension.swift */; };
 		DE9FDA7E2513B920004654A6 /* StoreFilterbigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9FDA7D2513B920004654A6 /* StoreFilterbigView.swift */; };
+		DEB87B8025514BEE000FE79D /* StackSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB87B7F25514BEE000FE79D /* StackSmall.swift */; };
+		DEB87B8325514C74000FE79D /* StackBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB87B8225514C74000FE79D /* StackBig.swift */; };
+		DEB87B8625514DBE000FE79D /* StackMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB87B8525514DBE000FE79D /* StackMedium.swift */; };
+		DEB87B8925514EFE000FE79D /* PaymentLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB87B8825514EFE000FE79D /* PaymentLine.swift */; };
+		DEB87B8C25514F26000FE79D /* CenterLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB87B8B25514F26000FE79D /* CenterLine.swift */; };
 		DECCE95A2546F5520086218C /* StackSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCE9592546F5510086218C /* StackSmall.swift */; };
 		DECCE95D2547E9DC0086218C /* StackBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCE95C2547E9DC0086218C /* StackBig.swift */; };
 		DECCE9612547E9FF0086218C /* StackMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECCE9602547E9FF0086218C /* StackMedium.swift */; };
@@ -367,6 +372,11 @@
 		DE9610B7252247A400F371F4 /* HistoryEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEmptyView.swift; sourceTree = "<group>"; };
 		DE9FDA7325135615004654A6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		DE9FDA7D2513B920004654A6 /* StoreFilterbigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFilterbigView.swift; sourceTree = "<group>"; };
+		DEB87B7F25514BEE000FE79D /* StackSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackSmall.swift; sourceTree = "<group>"; };
+		DEB87B8225514C74000FE79D /* StackBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackBig.swift; sourceTree = "<group>"; };
+		DEB87B8525514DBE000FE79D /* StackMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackMedium.swift; sourceTree = "<group>"; };
+		DEB87B8825514EFE000FE79D /* PaymentLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentLine.swift; sourceTree = "<group>"; };
+		DEB87B8B25514F26000FE79D /* CenterLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterLine.swift; sourceTree = "<group>"; };
 		DECCE9592546F5510086218C /* StackSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackSmall.swift; sourceTree = "<group>"; };
 		DECCE95C2547E9DC0086218C /* StackBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackBig.swift; sourceTree = "<group>"; };
 		DECCE9602547E9FF0086218C /* StackMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackMedium.swift; sourceTree = "<group>"; };
@@ -396,6 +406,11 @@
 				034399CE2529D4A800ABBDC9 /* StoreButtonView.swift */,
 				034399D12529D56200ABBDC9 /* ReOrderButton.swift */,
 				034399D52529EDB600ABBDC9 /* SectionView.swift */,
+				DEB87B7F25514BEE000FE79D /* StackSmall.swift */,
+				DEB87B8225514C74000FE79D /* StackBig.swift */,
+				DEB87B8525514DBE000FE79D /* StackMedium.swift */,
+				DEB87B8825514EFE000FE79D /* PaymentLine.swift */,
+				DEB87B8B25514F26000FE79D /* CenterLine.swift */,
 				DECCE9592546F5510086218C /* StackSmall.swift */,
 				DECCE95C2547E9DC0086218C /* StackBig.swift */,
 				DECCE9602547E9FF0086218C /* StackMedium.swift */,
@@ -1392,6 +1407,7 @@
 				DE9610B12521E3D600F371F4 /* MyListBannerView.swift in Sources */,
 				73A25020252BFB3D009D42EF /* TopView.swift in Sources */,
 				739A42CA24F5F7F300A51BE0 /* ShareView.swift in Sources */,
+				DEB87B8025514BEE000FE79D /* StackSmall.swift in Sources */,
 				6E8CFFBA254ACACA0002D202 /* GoogleBottomView.swift in Sources */,
 				DE9FDA7425135615004654A6 /* Extension.swift in Sources */,
 				73A7C55C253D6C3200744979 /* UITableViewDataSource.swift in Sources */,
@@ -1468,6 +1484,7 @@
 				D33EDF2B24F281E90033330E /* BottomListCell.swift in Sources */,
 				D3C2672824F36C3500FB29A6 /* LogCell.swift in Sources */,
 				731B05932510E857005BC1DC /* Paywith.swift in Sources */,
+				DEB87B8925514EFE000FE79D /* PaymentLine.swift in Sources */,
 				DE9FDA7E2513B920004654A6 /* StoreFilterbigView.swift in Sources */,
 				731B05892510E75A005BC1DC /* LoginCell.swift in Sources */,
 				D33768DC24ECCC9000E0C27A /* MenuListVC.swift in Sources */,
@@ -1482,6 +1499,7 @@
 				6EE8C08924F8FFB000A55413 /* TripleRestaurantCustomCell.swift in Sources */,
 				6E91215924FA50E7003D86F0 /* RestaurantPlusCustomCell.swift in Sources */,
 				DE21FA6F24F4AC5B004D8A56 /* CustomTopCategoryView.swift in Sources */,
+				DEB87B8325514C74000FE79D /* StackBig.swift in Sources */,
 				6E5AFD3D253ACF36004A21C5 /* MapTextFieldDelegate.swift in Sources */,
 				7343F05B25425901003CF79A /* DidSTableViewDalegate.swift in Sources */,
 				731B05812510E68E005BC1DC /* OrderVC.swift in Sources */,
@@ -1499,6 +1517,7 @@
 				D3BFB932251F136200B6B363 /* KeyboardNoti.swift in Sources */,
 				6E91215B24FAC301003D86F0 /* RestaurantNewCustomCell.swift in Sources */,
 				7306255024F53AD200DC70C1 /* CostView.swift in Sources */,
+				DEB87B8625514DBE000FE79D /* StackMedium.swift in Sources */,
 				D3ECDB7324FDCE2B00DAD53C /* StatusView.swift in Sources */,
 				DECCE9612547E9FF0086218C /* StackMedium.swift in Sources */,
 				6E373A8B24F10DF600BF5678 /* CollectionEdge.swift in Sources */,
@@ -1531,6 +1550,7 @@
 				739A42CD24F626DB00A51BE0 /* ShareVC.swift in Sources */,
 				6EEB0F4A2547358D00946985 /* LoadDataMapVC.swift in Sources */,
 				D3E5F78824EAAFC6001BB6B2 /* AppDelegate.swift in Sources */,
+				DEB87B8C25514F26000FE79D /* CenterLine.swift in Sources */,
 				DECCE95A2546F5520086218C /* StackSmall.swift in Sources */,
 				D37C9DA424FA5ADD00A7C9F2 /* PhoneInfoCell.swift in Sources */,
 				D3BFB92D251E44A800B6B363 /* TextFiledCell.swift in Sources */,

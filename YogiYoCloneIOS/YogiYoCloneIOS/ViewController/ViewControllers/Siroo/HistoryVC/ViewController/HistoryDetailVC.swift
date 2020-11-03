@@ -3,7 +3,7 @@
 //  YogiYoCloneIOS
 //
 //  Created by 김믿음 on 2020/09/29.
-//  Copyright © 2020 김동현. All rights reserved.
+//  Copyright © 2020 김믿음. All rights reserved.
 //
 
 import UIKit
@@ -11,15 +11,16 @@ import SnapKit
 
 
 class HistoryDetailVC: UIViewController {
-
+    
     // leading, trailing padding
     private let padding = 20
-  
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureView()
     }
+    
     
     // MARK: layout view 만들기
     func configureView() {
@@ -35,8 +36,12 @@ class HistoryDetailVC: UIViewController {
         let checkoutAmountSection = drawSection(parentView: scrollView, prev: totalAmountSection)
         let payMethodSection = drawSection(parentView: scrollView, prev: checkoutAmountSection)
         
+        let orderStatusLine = drawBigStackLine(parentView: orderStatusSection)
+        
         let orderStatusContents = drawBigStackLine(parentView: orderStatusSection)
         
+        
+
         let orderContents = [
             ["주문번호", "200829-17-360880"],
             ["주문시간", "2020-10-06 07:24" ],
@@ -53,7 +58,8 @@ class HistoryDetailVC: UIViewController {
         
         var prev2: UIStackView?
         
-//        let menuDetailListContents = drawStackLine(content: ["- 음료 변경 선택: 펩시콜라", "1,000원"], parentView: menusSection, prev: prev2)
+
+        //        let menuDetailListContents = drawStackLine(content: ["- 음료 변경 선택: 펩시콜라", "1,000원"], parentView: menusSection, prev: prev2)
         
         let menulistLine = drawMediumStackLine(content: menuTitleContents, parentView: menusSection)
         
@@ -62,7 +68,6 @@ class HistoryDetailVC: UIViewController {
         let payMethodLine = drawCenterStackLine(content: ["결제방식","현금"], parentView: payMethodSection)
         
         let paymentStackLine = drawPaymentStackLine(content: ["결제금액","20,000원"], parentView: checkoutAmountSection)
-    
 
     }
     
@@ -79,10 +84,10 @@ class HistoryDetailVC: UIViewController {
         }
     
         self.commonConstraints(target: sectionView, to: parentView, prev: prev)
-
         return sectionView
     }
     
+
     // stackSmallLine 보이는 부분
     func drawStackLine(content: [String], parentView: UIView, prev: UIView?) -> UIStackView {
         let stack = StackSmall()
@@ -100,16 +105,17 @@ class HistoryDetailVC: UIViewController {
     }
     
     // stackBigLine 보이는 부분
-    func drawBigStackLine(parentView: UIView) -> UIStackView {
-        let stack = StackBig()
-        stack.contents(label: "접수대기", image: UIImage(named: "OrderImage")!)
-        parentView.addSubview(stack)
-        stack.snp.makeConstraints { (make) in
-            make.top.equalTo(parentView).inset(10)
+    
+    func drawBigStackLine(parentView: UIView) -> UIView {
+        let view = StackBig()
+        parentView.addSubview(view)
+        view.snp.makeConstraints { (make) in
+            make.top.equalTo(parentView).inset(20)
+            make.centerY.equalTo(parentView.snp.centerY)
         }
         
-        fillLayoutConstraints(target: stack, to: parentView)
-        return stack
+        fillLayoutConstraints(target: view, to: parentView)
+        return view
     }
     
     // StackMediumLine 보이는 부분
@@ -137,6 +143,7 @@ class HistoryDetailVC: UIViewController {
         return stack
     }
     
+
     func drawCenterStackLine(content: [String],parentView: UIView) -> UIStackView {
         let stack = CenterLine()
         stack.contents(label: content[0], value: content[1])
@@ -150,8 +157,7 @@ class HistoryDetailVC: UIViewController {
     }
 
     
-    
-        
+
     // wrapView 그리기
     func drawWrap(parentView: UIView) -> WrapView {
         let wrapView = WrapView()
@@ -163,7 +169,7 @@ class HistoryDetailVC: UIViewController {
         fillLayoutConstraints(target: wrapView, to: view)
         
         return wrapView
- 
+        
     }
     
     // 닫기 버튼
@@ -173,10 +179,10 @@ class HistoryDetailVC: UIViewController {
         closeButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(20)
             make.leading.equalTo(parentView).offset(padding)
-            make.top.equalTo(parentView).offset(5)
         }
         return closeButton
     }
+    
     
     // 상세내용 스크롤뷰
     func drawScroll(parentView: UIView, prev: UIView) -> ContentsScrollView {
@@ -236,3 +242,4 @@ class HistoryDetailVC: UIViewController {
     }
     
 }
+

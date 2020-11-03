@@ -1,9 +1,10 @@
 //
-//  MenulistSection.swift
+//  PaymentLine.swift
 //  YogiYoCloneIOS
 //
-//  Created by 김믿음 on 2020/10/28.
-//  Copyright © 2020 김동현. All rights reserved.
+//  Created by 김믿음 on 2020/11/03.
+//  Copyright © 2020 김믿음. All rights reserved.
+
 //
 
 import UIKit
@@ -46,5 +47,4 @@ class PaymentLine: UIStackView {
     }
 
 }
-
 

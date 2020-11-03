@@ -2,8 +2,8 @@
 //  HistoryVC.swift
 //  YogiYoCloneIOS
 //
-//  Created by 김동현 on 2020/08/19.
-//  Copyright © 2020 김동현. All rights reserved.
+//  Created by 김믿음 on 2020/08/19.
+//  Copyright © 2020 김믿음. All rights reserved.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     var contactHistories: [OrderListData.Results] = []
     let orderCounts = [10, 0]
     private let topBannerImages = [UIImage(named: "MyListbanner1"),UIImage(named: "MyListbanner2")]
-
+    
     private var categoryIndex : Int = 0
     
     private var codeSegmented: CustomTopCategoryView?
@@ -32,7 +32,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     private let imageViews: [UIImageView] = [UIImageView(), UIImageView()]
     
     private lazy var wrapperScrollView: UIScrollView = {
-       return getWrapperScrollView()
+        return getWrapperScrollView()
     }()
     
     weak var historyVCDelegate : HistoryVCDelegate?
@@ -64,7 +64,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         
         title = "주문내역"
     }
-
+    
     
     //    MARK: Configure
     
@@ -76,7 +76,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     }
     
     /**
-        segment 메뉴 타이틀 가져오기
+     segment 메뉴 타이틀 가져오기
      */
     func orderTypeTitle() -> [String] {
         var titles: [String] = []
@@ -117,9 +117,8 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         }
     }
     
-    
     /**
-        스크롤뷰 기본셋팅하여 반환
+     스크롤뷰 기본셋팅하여 반환
      */
     func getWrapperScrollView() -> UIScrollView {
         let scrollView = UIScrollView()
@@ -134,8 +133,8 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     }
     
     /**
-        스크롤뷰 autolayout 설정
-        return: contentsView
+     스크롤뷰 autolayout 설정
+     return: contentsView
      */
     func configureWrapperScrollView() {
         wrapperScrollView.snp.makeConstraints { (make) in
@@ -145,7 +144,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     }
     
     /**
-        페이지마다 전체를 감싸줄 contentView 설정
+     페이지마다 전체를 감싸줄 contentView 설정
      */
     func configurePageContentView(page: Int) -> UIView {
         let pageView = pageViews[page]
@@ -165,7 +164,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     }
     
     /**
-        bannerView 설정
+     bannerView 설정
      */
     func congifureBannerView(parentView: UIView, index: Int) -> UIImageView {
         let imageView = imageViews[index]
@@ -178,7 +177,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         }
         
         return imageView
-    
+        
     }
     
     func configureEmptyView(parentView: UIView, bannerView: UIImageView) {
@@ -191,11 +190,11 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
             make.width.equalTo(parentView)
             make.top.equalTo(bannerView.snp.bottom)
         }
-
+        
     }
     
-//    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
-
+    //    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
+    
     func historycategoryButtonScrollAction(to index: Int) {
         categoryIndex = index
         let offset: CGFloat = CGFloat(index) * self.view.frame.width
@@ -209,13 +208,13 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let scrollIndex = setIndex(wrapperScrollView.contentOffset.x)
-//        if scrollIndex != categoryIndex {
-//            categoryIndex = scrollIndex
-//            codeSegmented?.indexChangedListener(categoryIndex)
-//        }
-//    }
+    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //        let scrollIndex = setIndex(wrapperScrollView.contentOffset.x)
+    //        if scrollIndex != categoryIndex {
+    //            categoryIndex = scrollIndex
+    //            codeSegmented?.indexChangedListener(categoryIndex)
+    //        }
+    //    }
     
     func categoryButtonScrollAction(to index: Int) {
         historycategoryButtonScrollAction(to: index)
@@ -239,10 +238,12 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     }
 }
 
+
 private let reuseIdentifier = "HistoryCell"
 
-extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
 
+extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -263,19 +264,18 @@ extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
     //셀이 선택되었을때 실행할 액션(HistoryDetailVC 로 이동)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(HistoryDetailVC(), animated: true)
-        print("터치가되나")
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//      let height: CGFloat = scrollView.frame.size.height
-//      let contentYOffset: CGFloat = scrollView.contentOffset.y
-//      let scrollViewHeight: CGFloat = scrollView.contentSize.height
-//      let distanceFromBottom: CGFloat = scrollViewHeight - contentYOffset
-//
-//      if distanceFromBottom < height {
-//        categoryDelegate?.scrolltableviewreload()
-//        print("스크롤")
-//      }
-//    }
- 
+    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //      let height: CGFloat = scrollView.frame.size.height
+    //      let contentYOffset: CGFloat = scrollView.contentOffset.y
+    //      let scrollViewHeight: CGFloat = scrollView.contentSize.height
+    //      let distanceFromBottom: CGFloat = scrollViewHeight - contentYOffset
+    //
+    //      if distanceFromBottom < height {
+    //        categoryDelegate?.scrolltableviewreload()
+    //        print("스크롤")
+    //      }
+    //    }
+    
 }
