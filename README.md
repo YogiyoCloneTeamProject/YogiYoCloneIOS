@@ -21,12 +21,12 @@
 ## 소감 한마디
 - 표건욱
 ```
-백엔드 팀과 함께하는 프로젝트 방식을 경험함으로써 현업 프로젝트에서 발생하는 애로 사항과 해결 방안을 경험해 볼 수 있는 뜻깊은 시간이었습니다.
-또한 개발 기간 이후 앱의 부족한 점을 공유하고 보완하는 시간을 가지며 코로나19로 인해 온라인으로 IOS 와 Backend 팀의 소통과 협업을
-하는 과정은 Untact 시대에 맞는 업무방식을 직/간접적으로 경험해 볼 수 있었습니다.
+백엔드 팀과 함께하는 프로젝트 방식을 경험함으로써 현업 프로젝트에서 발생하는 애로 사항과 해결 방안을 경험해 볼 수 있는
+뜻깊은 시간이었습니다. 또한 개발 기간 이후 앱의 부족한 점을 공유하고 보완하는 시간을 가지며 코로나19로 인해 온라인으로
+IOS 와 Backend 팀의 소통과 협업을 하는 과정은 Untact 시대에 맞는 업무방식을 직/간접적으로 경험해 볼 수 있었습니다.
 프로젝트 보완 기간 동안 github 관리를 맡음으로써 각 팀원들의 다른 스타일의 코드를 이해하고 응용하는 경험을 할 수 있었습니다.
-이 기간을 통해 팀원들의 pullRequests를 보며 코드 중복을 막기 위해 재사용 할 수 있도록 Code refactoring에 포인트를 두었습니다.
-개인 프로젝트로는 경험할 수 없는, 협업을 통해서만 알 수 있는 좋은 경험을 느낀 시간이었습니다.
+이 기간을 통해 팀원들의 pullRequests를 보며 코드 중복을 막기 위해 재사용 할 수 있도록 Code refactoring에 포인트를 
+두었습니다. 개인 프로젝트로는 경험할 수 없는, 협업을 통해서만 알 수 있는 좋은 경험을 느낀 시간이었습니다.
 ```
 
 - 김믿음 
@@ -248,8 +248,7 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 ---
 변윤나
-
-## DetailMenuVC, OrderVC
+## DetailMenuVC
 
 
 - 메뉴 옵션(필/선) 및 수량선택. 결제기능
@@ -260,13 +259,24 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 - 옵션,필수등의 체크사항은 데이터에 따라 mandatory(true,false), name, price데이터가 변동되는 것을 고려하여 row와 section값에 직접 접근하여 처리.(필수옵션 - 단일선택, 선택옵션 - 다량선택을 위한 액션은 프로토콜로 처리)
 
-- 체크해제에 대한 데이터 삭제
+<div>
+<p align="center">
+<img width="200" src="https://qussk.github.io/image/gif/yogi22.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
+</p>
+</div>
+
+## OrderVC
+
+- DetailMenuVC에서 선택한 데이터 내역을 받음. 수정가능.
+- 모델에서 따로 연산처리함
+- 유저 주소, 요청사항등 선택
 
 <div>
 <p align="center">
-<img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
-<img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
-<img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
+<img width="200" src= "https://qussk.github.io/image/gif/yogi33.gif">
+<img width="200" src= "https://qussk.github.io/image/gif/yogi44.gif">
 </p>
 </div>
 
@@ -287,7 +297,7 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 
 
-## SearchVC
+## SearchVC, DidsearchVC
 
 - 검색기능
 
@@ -297,7 +307,8 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 <div>
 <p align="center">
-<img width="200" src="https://qussk.github.io/image/gif/yogi6.gif">
+<img width="200" src="https://qussk.github.io/image/gif/search1.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi11.gif">
 </p>
 </div>
 
