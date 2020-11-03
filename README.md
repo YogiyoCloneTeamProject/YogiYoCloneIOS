@@ -249,7 +249,9 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 ---
 변윤나
 
-## DetailMenuVC, OrderVC
+변윤나
+
+## DetailMenuVC
 
 
 - 메뉴 옵션(필/선) 및 수량선택. 결제기능
@@ -260,13 +262,24 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 - 옵션,필수등의 체크사항은 데이터에 따라 mandatory(true,false), name, price데이터가 변동되는 것을 고려하여 row와 section값에 직접 접근하여 처리.(필수옵션 - 단일선택, 선택옵션 - 다량선택을 위한 액션은 프로토콜로 처리)
 
-- 체크해제에 대한 데이터 삭제
+<div>
+<p align="center">
+<img width="200" src="https://qussk.github.io/image/gif/yogi22.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
+</p>
+</div>
+
+## OrderVC
+
+- DetailMenuVC에서 선택한 데이터 내역을 받음. 수정가능.
+- 모델에서 따로 연산처리함
+- 유저 주소, 요청사항등 선택
 
 <div>
 <p align="center">
-<img width="200" src="https://qussk.github.io/image/gif/yogi1.gif">
-<img width="200" src="https://qussk.github.io/image/gif/yogi4.gif">
-<img width="200" src="https://qussk.github.io/image/gif/yogi3.gif">
+<img width="200" src= "https://qussk.github.io/image/gif/yogi33.gif">
+<img width="200" src= "https://qussk.github.io/image/gif/yogi44.gif">
 </p>
 </div>
 
@@ -287,7 +300,7 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 
 
-## SearchVC
+## SearchVC, DidsearchVC
 
 - 검색기능
 
@@ -297,7 +310,8 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 
 <div>
 <p align="center">
-<img width="200" src="https://qussk.github.io/image/gif/yogi6.gif">
+<img width="200" src="https://qussk.github.io/image/gif/search1.gif">
+<img width="200" src="https://qussk.github.io/image/gif/yogi11.gif">
 </p>
 </div>
 
