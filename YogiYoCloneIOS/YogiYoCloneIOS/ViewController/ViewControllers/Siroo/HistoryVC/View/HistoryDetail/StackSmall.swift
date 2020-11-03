@@ -1,4 +1,5 @@
 //
+
 //  StackSmall.swift
 //  YogiYoCloneIOS
 //
@@ -46,4 +47,3 @@ class StackSmall: UIStackView {
         self.insertArrangedSubview(self.value, at: 1)
     }
 }
-

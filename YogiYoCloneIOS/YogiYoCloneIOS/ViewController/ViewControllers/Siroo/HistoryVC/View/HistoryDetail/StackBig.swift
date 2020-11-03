@@ -1,4 +1,5 @@
 //
+
 //  StackBig.swift
 //  YogiYoCloneIOS
 //
@@ -8,9 +9,9 @@
 
 import UIKit
 
+
 class StackBig: UIView {
 
-    
     private let orderStatus : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: FontModel.customSemibold, size: 20)
@@ -57,5 +58,4 @@ class StackBig: UIView {
         
     }
 }
-
 

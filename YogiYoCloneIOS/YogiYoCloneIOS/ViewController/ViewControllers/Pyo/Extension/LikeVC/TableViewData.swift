@@ -31,11 +31,13 @@ extension LikeVC: UITableViewDataSource {
             return cell
         } else {
             if indexPath.row == 0 {
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CountHeaderCell.identifier) as? CountHeaderCell else { fatalError() }
                 cell.setValue(count: likeData?.results.count ?? 0)
                 
                 return cell
             } else {
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreListCell.identifier) as? StoreListCell else { fatalError() }
                 let row = indexPath.row - 1
                 cell.setValue(image: likeData?.results[row].image,

@@ -4,6 +4,7 @@
 //
 //  Created by 김믿음 on 2020/11/03.
 //  Copyright © 2020 김믿음. All rights reserved.
+
 //
 
 import UIKit
@@ -48,4 +49,3 @@ class StackMedium : UIStackView {
     }
 
 }
-

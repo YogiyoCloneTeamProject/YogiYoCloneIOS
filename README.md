@@ -20,7 +20,14 @@
 
 ## 소감 한마디
 - 표건욱
-
+```
+백엔드 팀과 함께하는 프로젝트 방식을 경험함으로써 현업 프로젝트에서 발생하는 애로 사항과 해결 방안을 경험해 볼 수 있는 뜻깊은 시간이었습니다.
+또한 개발 기간 이후 앱의 부족한 점을 공유하고 보완하는 시간을 가지며 코로나19로 인해 온라인으로 IOS 와 Backend 팀의 소통과 협업을
+하는 과정은 Untact 시대에 맞는 업무방식을 직/간접적으로 경험해 볼 수 있었습니다.
+프로젝트 보완 기간 동안 github 관리를 맡음으로써 각 팀원들의 다른 스타일의 코드를 이해하고 응용하는 경험을 할 수 있었습니다.
+이 기간을 통해 팀원들의 pullRequests를 보며 코드 중복을 막기 위해 재사용 할 수 있도록 Code refactoring에 포인트를 두었습니다.
+개인 프로젝트로는 경험할 수 없는, 협업을 통해서만 알 수 있는 좋은 경험을 느낀 시간이었습니다.
+```
 
 - 김믿음 
 ```
@@ -65,10 +72,58 @@ iOS동료들과 백엔드와의 장기간 팀프로젝트로 협업에 대한 �
 ---
 표건욱
 ## HomeVC
+- 메인 홈 
 
-## LikeVC
+- 모든 카테고리는 CustomView로 구현하여 반복사용
+- 같은 View, data만 다른 카테고리에 들어오는 Data에 따라 View가 자동으로 구성되도록 구현
+- 유저의 위치를 기반으로 한 서버의 추천 매장데이터를 가져와 UICollectionView 구성
+- 모든 Layout은 SnapKit을 사용하여 UIScrollView의 ContentView.size가 자동으로 변경되도록 구현
+- 각 item은 data를 받을 때 해당 매장, 카테고리의 id를 받아 push 할 시 다음 뷰로 id를 넘겨주어 연결
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778640-de755d80-1bbb-11eb-867a-83d38561a7ec.gif">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778683-2a280700-1bbc-11eb-99ea-b39a1a0acf6e.gif">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778808-192bc580-1bbd-11eb-87c5-c795d88da64d.gif">
+</p>
 
 ## MapVC
+- 주소검색 뷰
+
+- 상단 검색섹터는 CustomView, 하단의 최근 주소 목록과 검색 된 주소 목록은 Get 시 들어오는 data의 유, 무로 구별하여 하나의 CustomCell 내 구성 변경
+- TextFieldDelegate의 ShouldReturn 실행 시 textField의 text를 keyword로 kakaoRestAPI 주소검색으로부터 해당 keyword의 주소 Get
+- 각 cell은 data를 받을 때 해당 매장의 id를 받아 delegate에서 다음 뷰로 id를 넘겨주어 push 및 data 수신
+- 최근 주소 리스트는 UserDefaults에 Json형태로 담겨있는 data를 CustomStruct로 JSONDecoder를 이용하여 사용
+- 최근 주소 리스트 내 각 셀을 선택 시 해당 하는 주소가 homeVC의 상단 CustomTitle로 변경
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778845-6d36aa00-1bbd-11eb-8977-0c103bfd321c.gif">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778848-732c8b00-1bbd-11eb-936a-43a1b783ddde.gif">
+</p>
+
+## GoogleMapVC
+- 지도 뷰
+
+- 상단 지도는 GoogleMaps SDK를 이용, 하단의 상세주소 설정 View는 CustomView로 구현
+- MapVC에서 검색한 주소 Cell을 선택 시 indexpath.row 와 같은 addressData의 index 내 lat & lon data를 GMSCameraPosition로 넘겨주도록 구현
+- 현재 위치로 주소 찾기를 선택 시 push전 현재 위치를 찾고 해당 data를 GMSCameraPosition로 넘겨주도록 구현
+- GMSMapViewDelegate 내 idleAt position를 이용하여 map 이동 후 GoogleMapView의 중심의 lat & lon 값을 geocoder로 주소를 구한 뒤
+  하단 TextField의 text와 함께 Json형태로 UserDefaults로 저장 및 homeVC의 상단 CustomTitle로 변경
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778867-90615980-1bbd-11eb-8c96-260194a27c9d.gif">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778869-96573a80-1bbd-11eb-8580-b5c50876e4f1.gif">
+</p>
+
+## LikeVC
+- 찜 뷰
+
+- 코드 중복을 막기 위해 StoreListVC에서 사용되는 CustomCell을 재사용
+- 재사용 시 다른 뷰 구성을 적용하기 위해 Cell 클래스 내에서 함수를 구성하여 들어오는 data의 조건에 맞게 구현
+- 각 cell은 data를 받을 때 해당 매장의 id를 받아 delegate에서 다음 뷰로 id를 넘겨주어 push 및 data 수신
+
+<p align="center">
+<img width="200" alt="7" src="https://user-images.githubusercontent.com/62653558/97778835-4d9f8180-1bbd-11eb-906e-cd285a17706e.gif">
+</p>
 
 ---
 김믿음

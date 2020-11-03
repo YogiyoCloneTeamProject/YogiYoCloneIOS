@@ -77,9 +77,7 @@ class StoreListFilterView: UIView {
     private let filterselectedview : UIView = {
         let view = UIView()
         view.backgroundColor = .red
-        
         return view
-        
     }()
     
     private var orderArrayButtons : [UIButton] = []

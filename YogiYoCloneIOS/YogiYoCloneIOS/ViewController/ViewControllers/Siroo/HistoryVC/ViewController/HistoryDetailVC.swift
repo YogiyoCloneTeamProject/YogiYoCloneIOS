@@ -14,7 +14,7 @@ class HistoryDetailVC: UIViewController {
     
     // leading, trailing padding
     private let padding = 20
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -41,6 +41,7 @@ class HistoryDetailVC: UIViewController {
         let orderStatusContents = drawBigStackLine(parentView: orderStatusSection)
         
         
+
         let orderContents = [
             ["주문번호", "200829-17-360880"],
             ["주문시간", "2020-10-06 07:24" ],
@@ -57,6 +58,7 @@ class HistoryDetailVC: UIViewController {
         
         var prev2: UIStackView?
         
+
         //        let menuDetailListContents = drawStackLine(content: ["- 음료 변경 선택: 펩시콜라", "1,000원"], parentView: menusSection, prev: prev2)
         
         let menulistLine = drawMediumStackLine(content: menuTitleContents, parentView: menusSection)
@@ -66,8 +68,7 @@ class HistoryDetailVC: UIViewController {
         let payMethodLine = drawCenterStackLine(content: ["결제방식","현금"], parentView: payMethodSection)
         
         let paymentStackLine = drawPaymentStackLine(content: ["결제금액","20,000원"], parentView: checkoutAmountSection)
-        
-        
+
     }
     
     // Section
@@ -81,11 +82,12 @@ class HistoryDetailVC: UIViewController {
         sectionView.snp.makeConstraints { (make) in
             make.height.equalTo(50)
         }
+    
         self.commonConstraints(target: sectionView, to: parentView, prev: prev)
         return sectionView
     }
     
-    
+
     // stackSmallLine 보이는 부분
     func drawStackLine(content: [String], parentView: UIView, prev: UIView?) -> UIStackView {
         let stack = StackSmall()
@@ -111,6 +113,7 @@ class HistoryDetailVC: UIViewController {
             make.top.equalTo(parentView).inset(20)
             make.centerY.equalTo(parentView.snp.centerY)
         }
+        
         fillLayoutConstraints(target: view, to: parentView)
         return view
     }
@@ -140,6 +143,7 @@ class HistoryDetailVC: UIViewController {
         return stack
     }
     
+
     func drawCenterStackLine(content: [String],parentView: UIView) -> UIStackView {
         let stack = CenterLine()
         stack.contents(label: content[0], value: content[1])
@@ -151,8 +155,9 @@ class HistoryDetailVC: UIViewController {
         fillLayoutConstraints(target: stack, to: parentView)
         return stack
     }
+
     
-    
+
     // wrapView 그리기
     func drawWrap(parentView: UIView) -> WrapView {
         let wrapView = WrapView()
