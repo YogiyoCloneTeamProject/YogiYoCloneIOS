@@ -13,7 +13,7 @@ protocol HistoryEmptyViewdelegate : class {
 }
 
 class HistoryEmptyView: UIView, UIScrollViewDelegate {
-    
+//    MARK: Properties
     private let emptyView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -55,7 +55,7 @@ class HistoryEmptyView: UIView, UIScrollViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    MARK: Func
+//    MARK: configure
     func configSetUI() {
         
         addSubview(emptyView)

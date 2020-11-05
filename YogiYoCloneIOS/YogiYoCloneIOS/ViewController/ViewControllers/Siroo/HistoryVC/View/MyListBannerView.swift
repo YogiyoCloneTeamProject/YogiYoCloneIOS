@@ -3,14 +3,15 @@
 //  YogiYoCloneIOS
 //
 //  Created by 김믿음 on 2020/09/28.
-//  Copyright © 2020 김동현. All rights reserved.
+//  Copyright © 2020 김믿음. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
 class MyOrderListBannerView: UIView {
-    
+
+//    MARK: Properties
     let myOrderListbannerScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -18,10 +19,7 @@ class MyOrderListBannerView: UIView {
         scrollView.alwaysBounceHorizontal = true
         scrollView.alwaysBounceVertical = false
         scrollView.showsHorizontalScrollIndicator = false
-        
-        
-        
-        
+
         return scrollView
     }()
     
@@ -43,11 +41,13 @@ class MyOrderListBannerView: UIView {
         imageView.image = UIImage(named: "MyListbanner2")
         return imageView
     }()
-    
+
+//    MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
+//    MARK:  Set AutoLayout
     public func setBannerScrollView() {
         myOrderListbannerScrollView.contentSize = CGSize(width: myOrderListbannerScrollView.frame.width * 2, height: myOrderListbannerScrollView.frame.height)
         self.addSubview(myOrderListbannerScrollView)

@@ -10,19 +10,24 @@ import Alamofire
 import SwiftyJSON
 import Foundation
 
+//    MARK: HistoryFetch Protocol
 protocol HistoryFetchProtocol {
     func historyRetrived(histories: [OrderListData.Results])
 }
 
 class HistoryInfoFetch {
+//    MARK: Properties
     var historiesListData = [OrderListData?](repeating: nil, count: 2)
     
     var historyFetchDelegate : HistoryFetchProtocol?
-    
+
+//    MARK: Fetch
+
     func historyFetch() {
         self.getHistoryData()
     }
     
+    // 서버에서 데이터를 가져오는 과정
     func getHistoryData() {
         var hs:
             [OrderListData.Results] = []

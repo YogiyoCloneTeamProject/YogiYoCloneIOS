@@ -45,7 +45,6 @@ class StackBig: UIView {
         
         addSubview(orderStatus)
         orderStatus.snp.makeConstraints { (make) in
-//            make.centerY.equalTo(self.snp.centerY)
             make.leading.equalTo(self.snp.leading)
         }
         addSubview(delivery)
