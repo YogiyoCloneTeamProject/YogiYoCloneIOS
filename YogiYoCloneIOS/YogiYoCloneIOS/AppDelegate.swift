@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sleep(3)
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = HistoryDetailVC()
+        window?.rootViewController = MainTabVC()
         window?.makeKeyAndVisible()
         return true
     }
