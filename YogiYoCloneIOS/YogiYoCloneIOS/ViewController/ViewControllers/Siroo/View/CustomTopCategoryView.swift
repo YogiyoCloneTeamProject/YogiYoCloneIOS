@@ -63,7 +63,7 @@ class CustomTopCategoryView: UIView , StoreListVCDelegate, HistoryVCDelegate {
 
 
 //    MARK: Objc func
-    
+    // 다른 버튼을 클릭했을때 나타나는 액션
     @objc func buttonAction(sender: UIButton) {
 //        self.storeVC.scrollViewMoveAction()
         for (buttonIndex, btn) in buttons.enumerated() {

@@ -16,12 +16,9 @@ protocol YogiyoStoreListVCDelegate : class {
 
 private let reuseIdentifier = "StoreListCell"
 
-//public let scrollView = UIScrollView()
-
-
 class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate , categoryVCdelegate {
   
-    //    MARK: Properties
+//    MARK: Properties
     
     private let menuList = MenuListVC()
     private let scrollView = UIScrollView()
@@ -138,7 +135,7 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, Re
     }
     
     
-    //    MARK:  Selector
+//    MARK:  Selector
     @objc private func didTapNext() {
         let menuListVC = MenuListVC()
         navigationController?.pushViewController(menuListVC, animated: true)
@@ -176,7 +173,7 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, Re
         print("mapClick")
     }
     
-    //    MARK: fetch event
+//    MARK: fetch event
     func restaurantRetrived(restaurants: [AllListData.Results], index: Int , isFirst : Bool) {
         if isFirst == true {
             categoriesVC[index].restaurants = restaurants
@@ -187,7 +184,7 @@ class YogiyoPlusStoreListVC: UIViewController, CustomTopCategoryViewDelegate, Re
         categoriesVC[index].reload()
     }
     
-    //    MARK: Configure
+//    MARK: Configure
     func configure() {
         codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: 50), categoryTitles: categories)
         codeSegmented?.backgroundColor = .white

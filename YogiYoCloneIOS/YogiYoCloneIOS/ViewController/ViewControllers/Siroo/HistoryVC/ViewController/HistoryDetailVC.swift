@@ -15,6 +15,7 @@ class HistoryDetailVC: UIViewController {
     // leading, trailing padding
     private let padding = 20
 
+//    MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -22,7 +23,7 @@ class HistoryDetailVC: UIViewController {
     }
     
     
-    // MARK: layout view 만들기
+// MARK: layout view 만들기
     func configureView() {
         let wrapView = drawWrap(parentView: view)
         let closeButton: CloseButton = drawCloseButton(parentView: wrapView)
@@ -40,7 +41,6 @@ class HistoryDetailVC: UIViewController {
         
         let orderStatusContents = drawBigStackLine(parentView: orderStatusSection)
         
-        
 
         let orderContents = [
             ["주문번호", "200829-17-360880"],
@@ -56,16 +56,11 @@ class HistoryDetailVC: UIViewController {
             prev = drawStackLine(content: content, parentView: orderInfoSection, prev: prev)
         }
         
-        var prev2: UIStackView?
-        
-
-        //        let menuDetailListContents = drawStackLine(content: ["- 음료 변경 선택: 펩시콜라", "1,000원"], parentView: menusSection, prev: prev2)
-        
         let menulistLine = drawMediumStackLine(content: menuTitleContents, parentView: menusSection)
         
-        let totalAmountLine = drawCenterStackLine(content: ["상품합계","20,000원"], parentView: totalAmountSection)
+        let totalAmountLine = drawTotalAmountStackLine(content: ["상품합계","20,000원"], parentView: totalAmountSection)
         
-        let payMethodLine = drawCenterStackLine(content: ["결제방식","현금"], parentView: payMethodSection)
+        let payMethodLine = drawTotalAmountStackLine(content: ["결제방식","현금"], parentView: payMethodSection)
         
         let paymentStackLine = drawPaymentStackLine(content: ["결제금액","20,000원"], parentView: checkoutAmountSection)
 
@@ -105,7 +100,6 @@ class HistoryDetailVC: UIViewController {
     }
     
     // stackBigLine 보이는 부분
-    
     func drawBigStackLine(parentView: UIView) -> UIView {
         let view = StackBig()
         parentView.addSubview(view)
@@ -130,7 +124,8 @@ class HistoryDetailVC: UIViewController {
         fillLayoutConstraints(target: stack, to: parentView)
         return stack
     }
-    
+
+    // 최종 결제금액 부분
     func drawPaymentStackLine(content: [String],parentView: UIView) -> UIStackView {
         let stack = PaymentLine()
         stack.contents(label: content[0], value: content[1])
@@ -143,8 +138,8 @@ class HistoryDetailVC: UIViewController {
         return stack
     }
     
-
-    func drawCenterStackLine(content: [String],parentView: UIView) -> UIStackView {
+    // 결제 방식 & 상품 금액 합계 부분
+    func drawTotalAmountStackLine(content: [String],parentView: UIView) -> UIStackView {
         let stack = CenterLine()
         stack.contents(label: content[0], value: content[1])
         parentView.addSubview(stack)
@@ -169,19 +164,21 @@ class HistoryDetailVC: UIViewController {
         fillLayoutConstraints(target: wrapView, to: view)
         
         return wrapView
-        
+ 
     }
-    
+
     // 닫기 버튼
     func drawCloseButton(parentView: UIView) -> CloseButton {
         let closeButton = CloseButton()
         parentView.addSubview(closeButton)
         closeButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(20)
+            make.width.height.equalTo(30)
             make.leading.equalTo(parentView).offset(padding)
+            make.top.equalTo(parentView).offset(20)
         }
         return closeButton
     }
+
     
     
     // 상세내용 스크롤뷰
@@ -215,7 +212,7 @@ class HistoryDetailVC: UIViewController {
         let reOrderButton = ReOrderButton()
         parentView.addSubview(reOrderButton)
         reOrderButton.snp.makeConstraints { (make) in
-            make.top.equalTo(prev.snp.bottom).multipliedBy(0.8)
+            make.top.equalTo(prev.snp.bottom).multipliedBy(0.5)
         }
         loactedTopContsraints(target: reOrderButton, to: prev)
         return reOrderButton

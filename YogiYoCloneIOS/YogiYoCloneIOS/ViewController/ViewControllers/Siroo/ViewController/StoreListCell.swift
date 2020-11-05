@@ -17,7 +17,7 @@ class StoreListCell: UITableViewCell {
     
     static let identifier = "StoreListCell"
     
-    //    MARK: Properties
+//    MARK: Properties
     let storeImage : UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -87,7 +87,7 @@ class StoreListCell: UITableViewCell {
         return formatter
     }()
     
-    //    MARK:  LifeCycle
+//    MARK:  LifeCycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -106,7 +106,7 @@ class StoreListCell: UITableViewCell {
         setUIConstraints()
     }
     
-    //    MARK: SetUIConstraints
+//    MARK: SetUIConstraints
     
     private func setUIConstraints () {
         

@@ -9,13 +9,15 @@
 import UIKit
 import SnapKit
 
+//   MARK: HistoryVC Protocol
+
 protocol HistoryVCDelegate : class {
     func historyVCScrollIndex(to index : Int)
 }
 
 class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollViewDelegate, HistoryEmptyViewdelegate, HistoryFetchProtocol {
     
-    
+//    MARK: Properties
     let orderTypes = ["터치주문", "전화주문"]
     var touchHistories: [OrderListData.Results] = []
     var contactHistories: [OrderListData.Results] = []
@@ -38,7 +40,8 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     weak var historyVCDelegate : HistoryVCDelegate?
     
     var login : Bool = true
-    
+
+//    MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPiker.customSystem
@@ -49,9 +52,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         configureContentView()
         historyFetch.historyFetch()
     }
-    
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -66,7 +67,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     }
     
     
-    //    MARK: Configure
+//    MARK: ConfigureSegment
     
     func configurecodeSegmented() {
         codeSegmented = CustomTopCategoryView(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 50), categoryTitles: orderTypeTitle())
@@ -75,9 +76,9 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         view.addSubview(codeSegmented!)
     }
     
-    /**
-     segment 메뉴 타이틀 가져오기
-     */
+
+    
+    // segment 메뉴 타이틀 가져오기
     func orderTypeTitle() -> [String] {
         var titles: [String] = []
         for (index, title) in orderTypes.enumerated() {
@@ -86,13 +87,14 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         return titles
     }
     
+    // 주문하기 버튼 액션
     func orderTapButton() {
         navigationController?.pushViewController(storeListVC, animated: true)
         print("orderTapButton")
     }
     
     
-    // MARK: view 셋팅 (autolayout 포함)
+// MARK: view 셋팅 (autolayout 포함)
     func configureContentView() {
         view.addSubview(wrapperScrollView)
         configureWrapperScrollView()
@@ -107,7 +109,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
             }
         }
     }
-    
+//    MARK:  주문내역 데이터 불러오기
     func historyRetrived(histories: [OrderListData.Results]) {
         if histories.count > 0 {
             touchHistories = histories
@@ -117,9 +119,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         }
     }
     
-    /**
-     스크롤뷰 기본셋팅하여 반환
-     */
+//    MARK: 스크롤뷰 기본 세팅하여 반환
     func getWrapperScrollView() -> UIScrollView {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = ColorPiker.customGray
@@ -132,10 +132,8 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         return scrollView
     }
     
-    /**
-     스크롤뷰 autolayout 설정
-     return: contentsView
-     */
+
+//    MARK: 스크롤뷰 Autolayout 설정
     func configureWrapperScrollView() {
         wrapperScrollView.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(55)
@@ -143,9 +141,8 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         }
     }
     
-    /**
-     페이지마다 전체를 감싸줄 contentView 설정
-     */
+ 
+//    MARK: 페이지마다 전체를 감싸줄 contentView 설정
     func configurePageContentView(page: Int) -> UIView {
         let pageView = pageViews[page]
         let xPosition = page * Int(view.frame.width)
@@ -163,9 +160,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         
     }
     
-    /**
-     bannerView 설정
-     */
+//    MARK: Bannerview 설정
     func congifureBannerView(parentView: UIView, index: Int) -> UIImageView {
         let imageView = imageViews[index]
         imageView.image = topBannerImages[index]
@@ -193,7 +188,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         
     }
     
-    //    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
+//    MARK: Category에 따라 스크롤 이동 : category의 customView 를 delegate로 받음
     
     func historycategoryButtonScrollAction(to index: Int) {
         categoryIndex = index
@@ -202,19 +197,11 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
         print("\(categoryIndex)")
         
     }
-    
+    // 스크롤된 Y 축의 위치를 알아내는 함수
     func setIndex(_ offset: CGFloat) -> Int {
         return Int(offset / self.view.frame.width)
         
     }
-    
-    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    //        let scrollIndex = setIndex(wrapperScrollView.contentOffset.x)
-    //        if scrollIndex != categoryIndex {
-    //            categoryIndex = scrollIndex
-    //            codeSegmented?.indexChangedListener(categoryIndex)
-    //        }
-    //    }
     
     func categoryButtonScrollAction(to index: Int) {
         historycategoryButtonScrollAction(to: index)
@@ -224,7 +211,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
     func historyTableVCDelegate(id: Int) {
         print("TableviewDelegate")
     }
-    
+//    MARK: TableView Configure
     func configureTableView(parentView : UIView, bannerView: UIImageView, tableView: UITableView) {
         tableView.delegate = self
         tableView.dataSource = self
@@ -241,7 +228,7 @@ class HistoryVC: UIViewController,  CustomTopCategoryViewDelegate , UIScrollView
 
 private let reuseIdentifier = "HistoryCell"
 
-
+//    MARK: HistoryVC TableView DataSource & Delegate
 extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -266,16 +253,5 @@ extension HistoryVC : UITableViewDataSource , UITableViewDelegate{
         navigationController?.pushViewController(HistoryDetailVC(), animated: true)
     }
     
-    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    //      let height: CGFloat = scrollView.frame.size.height
-    //      let contentYOffset: CGFloat = scrollView.contentOffset.y
-    //      let scrollViewHeight: CGFloat = scrollView.contentSize.height
-    //      let distanceFromBottom: CGFloat = scrollViewHeight - contentYOffset
-    //
-    //      if distanceFromBottom < height {
-    //        categoryDelegate?.scrolltableviewreload()
-    //        print("스크롤")
-    //      }
-    //    }
-    
+
 }

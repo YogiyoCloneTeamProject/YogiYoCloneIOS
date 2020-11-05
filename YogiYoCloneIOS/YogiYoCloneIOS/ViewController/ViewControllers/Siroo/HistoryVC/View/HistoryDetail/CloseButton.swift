@@ -12,7 +12,7 @@ class CloseButton: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.setImage(UIImage(systemName: "xmark"), for: .normal)
+        self.setImage(UIImage(systemName: "xmark"), for: .normal)
         self.imageView?.tintColor = .black
         self.contentVerticalAlignment = .fill
         self.contentHorizontalAlignment = .fill

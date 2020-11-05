@@ -18,7 +18,7 @@ protocol categoryVCdelegate: class {
 
 class CategoryVC: UIViewController {
     
-    
+//    MARK: Properties
     public var restaurants: [AllListData.Results] = []
 //    private var categoryindex: Int?
     private let tableView = UITableView()
@@ -26,7 +26,7 @@ class CategoryVC: UIViewController {
     private var addDataCallCount: Int = 0
 
     
-    //    MARK: LifeCycle
+//    MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +36,7 @@ class CategoryVC: UIViewController {
         self.tableView.reloadData()
     }
     
-    
-    //    MARK: Config
+//    MARK: Config
     func configureTableView(index: Int) -> UIView {
         tableView.delegate = self
         tableView.dataSource = self

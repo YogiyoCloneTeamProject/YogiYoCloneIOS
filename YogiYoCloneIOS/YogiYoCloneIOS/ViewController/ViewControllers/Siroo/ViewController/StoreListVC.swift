@@ -18,11 +18,9 @@ private let reuseIdentifier = "StoreListCell"
 
 public let scrollView = UIScrollView()
 
-//
-
 class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantModelProtocol , UIScrollViewDelegate , categoryVCdelegate {
   
-    //    MARK: Properties
+//    MARK: Properties
     
     private let menuList = MenuListVC()
     private let scrollView = UIScrollView()
@@ -74,7 +72,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
     }()
 
     
-    //    MARK: LifeCycle
+//    MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +151,7 @@ class StoreListVC: UIViewController, CustomTopCategoryViewDelegate, RestaurantMo
         filterbutton.backgroundColor = .systemGray
     }
     
-    //    MARK: fetch event
+//    MARK: fetch event
     func restaurantRetrived(restaurants: [AllListData.Results], index: Int , isFirst : Bool) {
         // 기존 로드된 매장리스트 + 새로 받은 매장리스트 (스크롤로 페이징할때 모두 보이게 하기 위해)
         // 필터 정렬시 : Restaurant리스트를 먼저 빈 값 [] 으로 넣어두고 다음조건으로 [] + 새로 불러온 Restarurant List 값을 더해준다. > (스크롤로 페이징할때 모두 보이게 하기 위해)
